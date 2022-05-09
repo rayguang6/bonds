@@ -1,3 +1,8 @@
+<?php 
+include 'config/config.php';
+include 'includes/controllers/login_controller.php';
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -25,13 +30,14 @@
 			</div>
 
 
-			<form class="login-form" style="width: 290px">
+			<form class="login-form" style="width: 290px" action="index.php" method="POST">
 				<h2>User Login</h2>
 
 				<div class="wrap-input">
-					<input class="input" type="text" id="id" placeholder="ID" required
-						oninvalid="this.setCustomValidity('Login ID is required: x-xx-xx')"
-						oninput="this.setCustomValidity('')" pattern="[A-Z]{1}-[0-9]{2}-[0-9a-z]{2}">
+					<input class="input" type="text" id="id" placeholder="ID" required name="login_ic" >
+					<!-- oninvalid="this.setCustomValidity('Login ID is required: x-xx-xx')" -->
+						<!-- oninput="this.setCustomValidity('')" pattern="[A-Z]{1}-[0-9]{2}-[0-9a-z]{2}" -->
+						
 					<span class="focus-input"></span>
 					<span class="symbol-input">
 						<i class="fa-solid fa-id-card" aria-hidden="true"></i>
@@ -39,7 +45,7 @@
 				</div>
 
 				<div class="wrap-input">
-					<input class="input" type="password" id="password" placeholder="Password" required
+					<input class="input" type="password" id="password" placeholder="Password" name="login_password" required
 						oninvalid="this.setCustomValidity('Password is required')" oninput="this.setCustomValidity('')">
 					<span class="focus-input"></span>
 					<span class="symbol-input">
@@ -50,7 +56,7 @@
 				<div class="d-flex">
 					<div class="w-50 text-left">
 						<p>Select login status</p>
-						<select class="select" id="role">
+						<select class="select" id="role" name="login_type">
 							<option value="resident">Resident</option>
 							<option value="admin">Admin</option>
 						</select>
@@ -62,8 +68,9 @@
 					</div>
 				</div>
 
+				<!-- Login Button -->
 				<div class="p-4">
-					<input type="submit" class="submit" id="submit">
+					<input type="submit" class="submit" id="submit" name="login_button" value="Login">
 				</div>
 
 				<div class="text-center p-5">
@@ -94,7 +101,7 @@
 		})
 	</script>
 	<!-- JS script -->
-	<script src="assets/js/login.js"></script>
+	<!-- <script src="assets/js/login.js"></script> -->
 
 </body>
 

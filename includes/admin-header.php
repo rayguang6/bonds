@@ -86,7 +86,7 @@
                         </a>
                         <ul class="dropdown-menu dropdown-menu text-small shadow" aria-labelledby="dropdownUser1">
                             
-                            <li><a class="dropdown-item text-danger" href="index.php">
+                            <li><a class="dropdown-item text-danger" href="includes/controllers/logout.php">
                                     <i class="fs-6 bi bi-box-arrow-right"></i>
                                     <span class="ms-2">Logout</span>
                                 </a></li>
@@ -142,7 +142,7 @@
                                          <ul class="dropdown-menu mt-1"
                                             aria-labelledby="dropdownUser2">
                                             <li>
-                                                <a class="dropdown-item text-danger" href="index.php">
+                                                <a class="dropdown-item text-danger" href="includes/controllers/logout.php">
                                                     <i class="fs-5 bi bi-box-arrow-right"></i>
                                                     <span class="ms-2">Logout</span>
                                                 </a>

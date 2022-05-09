@@ -1,4 +1,18 @@
 
+<?php  
+require 'config/config.php';
+
+if(isset($_SESSION['ic'])){
+    $LoggedInIC = $_SESSION['ic'];
+    $residentDetailsQuery = mysqli_query($con,"SELECT * FROM resident WHERE ic ='$LoggedInIC'");
+    $Resident = mysqli_fetch_array($residentDetailsQuery);//global variable to retrieve logged in resident
+    // echo ($Resident['name']);
+
+}else{
+    header("Location: index.php");
+}
+
+?>
     <html>
     <html lang="en">
 
@@ -85,7 +99,7 @@
 
                                 <span class="d-none d-sm-inline ps-1">
                                     <div class="ms-1">
-                                        <h6 class="py-0 my-0">Ray Guang</h6>
+                                        <h6 class="py-0 my-0"><?php echo $Resident['name']?></h6>
                                         <small class="text-muted py-0 my-0">A-10-13</small>
                                     </div>
                                 </span>
@@ -101,7 +115,7 @@
                                     <hr class="dropdown-divider">
                                 </li>
                                 <li>
-                                    <a class="dropdown-item text-danger" href="index.php">
+                                    <a class="dropdown-item text-danger" href="includes/controllers/logout.php">
                                         <i class="fs-5 bi bi-box-arrow-right"></i>
                                         <span class="ms-2">Logout</span>
                                     </a>
@@ -149,7 +163,7 @@
                                                             <img class="rounded-circle" src="assets/images/profile-image.png" alt="profile picture" width="40" height="40">
                                                         </div>
                                                         <div class="ms-1">
-                                                            <h6 class="py-0 my-0">Ray Guang</h6>
+                                                            <h6 class="py-0 my-0"> <?php echo $Resident['name']?></h6>
                                                             <small class="text-muted py-0 my-0">A-10-13</small>
                                                         </div>
                                                     </div>
@@ -167,7 +181,7 @@
                                                     <hr class="dropdown-divider">
                                                 </li>
                                                 <li>
-                                                    <a class="dropdown-item text-danger" href="index.php">
+                                                    <a class="dropdown-item text-danger" href="includes/controllers/logout.php">
                                                         <i class="fs-5 bi bi-box-arrow-right"></i>
                                                         <span class="ms-2">Logout</span>
                                                     </a>
@@ -205,9 +219,6 @@
                                     </ul>
                                     <a href="https://mail.google.com/mail/u/0/?view=cm&amp;fs=1&amp;source=mailto&amp;to=support@bonds.com" target="_blank"  title="Send Email" class="mx-1 btn btn_mygreen">
                                         <i class="fa-solid fa-headset me-2"></i>Support</a>
-                                    <!-- <a href="chat.php" label="Get Suppport" class="me-lg-3 btn btn_mygreen"><i
-                                            class="fa-solid fa-headset me-2"></i>Get Help</a> -->
-                                    <!-- <a class="ms-2" href="index.php"><i class="fs-3 bi bi-box-arrow-right "></i></a> -->
                                 </span>
                             </div>
                         </nav>
