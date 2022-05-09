@@ -55,9 +55,8 @@ a:hover{
     color: #0d6efd;	
 }
 
-
 .mydarkgreen, h1,h2,h3,h4,h5,h6{
-  color: #183B68;
+  color: #183B68 !important;
 }
 /* remove the bluecolor when clicked on dropdown item tab */
 .dropdown-item:focus{

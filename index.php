@@ -94,7 +94,7 @@
 		})
 	</script>
 	<!-- JS script -->
-	<script src="assets/js/login.js"></script> <!-- Replace source directory -->
+	<script src="assets/js/login.js"></script>
 
 </body>
 
