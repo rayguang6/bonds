@@ -1,3 +1,9 @@
+
+<?php  
+include 'config/config.php';
+include 'includes/classes/Resident.php';
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -122,7 +128,7 @@
                             </button>
                             <span class="collapse navbar-collapse" id="navbarSupportedContent">
                                 
-                                <ul class="navbar-nav ms-auto">
+                                <ul class="navbar-nav ms-auto align-items-center">
                                     
                                     <!-- topbar profile start -->
                                     <li class="nav-item dropdown ms-auto me-1">
@@ -130,7 +136,7 @@
                                             <div class="text-nowrap glassmorphism p-2" id="topbar_profile">
                                                 <div class="d-flex">
                                                     <div class="my-auto">
-                                                        <img class="rounded-circle" src="assets/images/admin.png" alt="profile picture" height="40">
+                                                        <img class="rounded-circle small_profile_picture" src="assets/images/admin.png" alt="profile picture" height="40">
                                                     </div>
                                                     <div class="ms-1">
                                                         <h6 class="py-0 my-0">Admin</h6>

@@ -4,7 +4,9 @@ include 'includes/header.php';?>
 
     <div class="col p-0 m-0">
         <div class="col-12 col-lg-8 mycontainer mx-auto">
-            <h2>Hi, <span>Guang!</span> Welcome to Bonds App </h2>
+            <h2>Hi, 
+                <span>Guang!</span> 
+            Welcome to Bonds App </h2>
             <p class="text-muted m-0">Get in touch with us!</p>
         </div>
 

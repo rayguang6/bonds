@@ -1,8 +1,12 @@
 <?php 
 $pageTitle = "Profile";
-include 'includes/header.php';?>
+include 'includes/header.php';
+?>
+<!-- 
+  use <?php //echo $Resident->getName()?>  to fetch dynamic   
+-->
 
-  <div class="container main-content-container">
+<div class="container main-content-container">
     <div class="profile_container row my_container p-4">
       <div class="mycontainer col-9 d-flex flex-column justify-content-start">
         <form onsubmit="return confirmEdit();" id="mainForm">
@@ -12,7 +16,7 @@ include 'includes/header.php';?>
             <div class="row">
               <div class="col">
                 <label for="profile-firstName" class="form-label">First Name</label>
-                <input type="text" class="form-control" value="Zheng Qian" id="profile-firstName" required
+                <input type="text" class="form-control" value=<?php echo "'".$Resident->getName()."'"?> id="profile-firstName" required
                   disabled />
               </div>
               <div class="col">
@@ -97,7 +101,7 @@ include 'includes/header.php';?>
             </div>
             <div class="col">
               <label for="profile-roomNum" class="form-label">Room</label>
-              <input type="text" class="form-control" value="A-10-13" id="profile-roomNum" disabled />
+              <input type="text" class="form-control" value='<?php echo $Resident->getUnit()?>' id="profile-roomNum" disabled />
             </div>
           </div>
           <div class="row">
@@ -119,15 +123,15 @@ include 'includes/header.php';?>
       </div>
       <div class="minimizeProfileSide" id="minimizeProfileSide" onclick="toggleSide()">
         <div id="toggleSideButton2"></div>
-        <img src="assets/images/profile-image.png" alt="profile-image">
-        <h6>Zheng Qian, A-10-13</h6>
+        <img src=<?php echo $Resident->getProfilePic()?> alt="profile-image" class="small_profile_picture">
+        <h6><?php echo $Resident->getName().' , '.$Resident->getUnit()?></h6>
       </div>
       <div class="col-3" id="profileSideBar">
         <div class="profileImgSide" id="profileImgSide">
           <div onclick="toggleSide()" id="toggleSideButton"></div>
 
           <div class="image" style="margin-top: 20px;">
-            <img src="assets/images/profile-image.png" alt="profile image" id="profile-image" />
+            <img src=<?php echo $Resident->getProfilePic()?> alt="profile image" id="profile-image" class="small_profile_picture"/>
 
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
               class="bi bi-camera-fill editImage button button_link" viewBox="0 0 16 16"
@@ -139,8 +143,8 @@ include 'includes/header.php';?>
           </div>
           <hr />
           <div class="details">
-            <h2>Zheng Qian</h2>
-            <h2>A-10-13</h2>
+            <h2><?php echo $Resident->getName()?></h2>
+            <h2><?php echo $Resident->getUnit()?></h2>
           </div>
           <div class="riskStatus">
             <i class="fa-solid fa-virus"></i>

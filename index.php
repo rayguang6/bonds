@@ -36,7 +36,7 @@ include 'includes/controllers/login_controller.php';
 				<div class="wrap-input">
 					<input class="input" type="text" id="id" placeholder="ID" required name="login_ic" >
 					<!-- oninvalid="this.setCustomValidity('Login ID is required: x-xx-xx')" -->
-						<!-- oninput="this.setCustomValidity('')" pattern="[A-Z]{1}-[0-9]{2}-[0-9a-z]{2}" -->
+					<!-- oninput="this.setCustomValidity('')" pattern="[A-Z]{1}-[0-9]{2}-[0-9a-z]{2}" -->
 						
 					<span class="focus-input"></span>
 					<span class="symbol-input">

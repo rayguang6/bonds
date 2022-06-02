@@ -21,7 +21,7 @@ body {
   height: 100vh;
 }
 
-body{
+body {
   overflow-x: hidden;
 }
 
@@ -60,7 +60,6 @@ a:hover {
   color: #46cdcf;
 }
 
-
 .mydarkgreen,
 h1,
 h2,
@@ -72,14 +71,14 @@ h6 {
 }
 
 /* remove the bluecolor when clicked on dropdown item tab */
-.dropdown-item:focus{
+.dropdown-item:focus {
   background: none !important;
   color: black;
 }
+
 /** Scroll Bar **/
 /* width */
 ::-webkit-scrollbar {
-
   width: 10px;
 }
 
@@ -88,16 +87,23 @@ h6 {
   box-shadow: inset 0 0 3px rgba(149, 157, 165, 0.75);
   border-radius: 10px;
 }
- 
+
 /* Handle */
 ::-webkit-scrollbar-thumb {
-  background: #46cdcf; 
+  background: #46cdcf;
   border-radius: 10px;
 }
 
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
-  background: rgba(70, 205, 207,0.75);
+  background: rgba(70, 205, 207, 0.75);
+}
+
+/* Small Image */
+.small_profile_picture {
+  /* width: 50px !important;
+  height: 50px !important; */
+  object-fit: cover !important;
 }
 
 /********************
@@ -149,8 +155,10 @@ Styling Sidebar
   border-radius: 30px !important;
   background-color: white !important;
 }
-#profile:hover, #topbar_profile:hover {
-  transform: translate3d(0, -3px, 0 );
+
+#profile:hover,
+#topbar_profile:hover {
+  transform: translate3d(0, -3px, 0);
   box-shadow: 0 2rem 5rem 0 rgba(0, 0, 0, 0.1);
 }
 
@@ -212,7 +220,7 @@ Styling Topbar
     padding-left: 20%;
   }
   #topbar {
-    width: 70%;
+    width: 80%;
   }
 }
 /* Responsive bar end */
@@ -224,13 +232,13 @@ Styling Topbar
 }
 
 /* profile background glassmor effect */
-.glassmorphism{
+.glassmorphism {
   background: rgba(255, 255, 255, 0.15);
-  box-shadow: 0 8px 16px 0 rgba(70, 205, 207,0.15);
-  backdrop-filter: blur( 10px );
-  -webkit-backdrop-filter: blur( 1    4px );
+  box-shadow: 0 8px 16px 0 rgba(70, 205, 207, 0.15);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(1 4px);
   border-radius: 10px;
-  border: 1px solid rgba( 255, 255, 255, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.15);
   cursor: pointer;
 }
 
@@ -515,13 +523,14 @@ Profile START
   background-color: white;
   border-top-left-radius: 25px;
 }
-.profile_container .form-control:disabled, select:disabled option{
+.profile_container .form-control:disabled,
+select:disabled option {
   background: white;
   border: none;
   margin-left: -12px;
 }
 
-.profile_container select:disabled{
+.profile_container select:disabled {
   background: white;
   border: none;
   margin-left: -12px;
@@ -530,7 +539,6 @@ Profile START
 /*************************
 Profile END  
 ***************************/
-
 
 /*************************
 Explore START  
@@ -543,25 +551,26 @@ Explore START
   display: inline-block;
 }
 .button_color {
-  background-color: #3D84A8;
+  background-color: #3d84a8;
   border: 0;
 }
 
 .dropdown_bg_color {
-  background-color: #48466D
+  background-color: #48466d;
 }
 .text-color {
-    color: #FFFFFF;
+  color: #ffffff;
 }
-.tab{
-  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+.tab {
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
   margin-left: 15px;
   font-size: larger;
 }
 
 /* hover animation */
-.tab-content .card:hover{
-  transform: translate3d(0, -3px, 0 );
+.tab-content .card:hover {
+  transform: translate3d(0, -3px, 0);
   box-shadow: 0 2rem 5rem 0 rgba(0, 0, 0, 0.1);
 }
 
@@ -578,7 +587,6 @@ Dashboard
   background-size: cover;
   background-position: center;
 } */
-
 
 /***************************
 Slick Slider
@@ -598,16 +606,16 @@ Slick Slider
 
 .slick-prev:before,
 .slick-next:before {
-  color: #46CDCF !important;
+  color: #46cdcf !important;
 }
 
 .slick-slide {
-  transition: all ease-in-out .3s;
-  opacity: .2;
+  transition: all ease-in-out 0.3s;
+  opacity: 0.2;
 }
 
 .slick-active {
-  opacity: .5;
+  opacity: 0.5;
 }
 
 .slick-current {

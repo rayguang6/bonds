@@ -8,29 +8,34 @@ include 'includes/header.php';?>
                                     <!-- Start View Covid Bar -->
                                     <h2 class="text-decoration-none fs-1 fw-bold mydarkgreen text-center">View Covid 19
                                         Cases</h2>
-                                    <ul class="nav nav-tabs d-flex align-items-start" id="myTab" role="tablist">
-                                        <button class="btn btn_mygreen" onClick="window.location.reload();">Refresh
-                                            Page</button>
-                                        <li class="ms-auto" role="presentation">
-                                            <button class="nav-link active" id="overall-tab" data-bs-toggle="tab"
-                                                data-bs-target="#overall-tab-content" type="button" role="tab"
-                                                aria-controls="overall-tab-content"
-                                                aria-selected="true">Yesterday</button>
-                                        </li>
-                                        <li class="" role="presentation">
-                                            <button class="nav-link" id="week-tab" data-bs-toggle="tab"
-                                                data-bs-target="#week-tab-content" type="button" role="tab"
-                                                aria-controls="week-tab-content" aria-selected="false">Weekly</button>
-                                        </li>
-                                        <li class="" role="presentation">
-                                            <button class="nav-link" id="month-tab" data-bs-toggle="tab"
-                                                data-bs-target="#month-tab-content" type="button" role="tab"
-                                                aria-controls="month-tab-content"
-                                                aria-selected="false">Month</button>
-                                        </li>
-                                        
 
-                                    </ul>
+                                    <div class="col-12 col-md-4">
+                                        <button class="btn btn_mygreen" onClick="window.location.reload();">Refresh Page</button>
+                                    </div>    
+                                    <div class="col-12 col-md-8">
+                                        <ul class="nav nav-tabs d-flex align-items-start" id="myTab" role="tablist">
+    
+                                            <li class="ms-auto" role="presentation">
+                                                <button class="nav-link active" id="overall-tab" data-bs-toggle="tab"
+                                                    data-bs-target="#overall-tab-content" type="button" role="tab"
+                                                    aria-controls="overall-tab-content"
+                                                    aria-selected="true">Yesterday</button>
+                                            </li>
+                                            <li class="" role="presentation">
+                                                <button class="nav-link" id="week-tab" data-bs-toggle="tab"
+                                                    data-bs-target="#week-tab-content" type="button" role="tab"
+                                                    aria-controls="week-tab-content" aria-selected="false">Weekly</button>
+                                            </li>
+                                            <li class="" role="presentation">
+                                                <button class="nav-link" id="month-tab" data-bs-toggle="tab"
+                                                    data-bs-target="#month-tab-content" type="button" role="tab"
+                                                    aria-controls="month-tab-content"
+                                                    aria-selected="false">Month</button>
+                                            </li>
+                                            
+    
+                                        </ul>
+                                    </div>
 
                                 </div>
 
@@ -120,7 +125,7 @@ include 'includes/header.php';?>
 
                                         <!-- Name and Block Will Be Get Dynamically -->
                                         <h6 class="mt-4">Name</h6>
-                                        <input class="form-control" type="text" disabled value="Mr Suddenly">
+                                        <input class="form-control" type="text" disabled value='<?php echo $Resident->getName()?>'>
 
                                         <h6 class="mt-4">Unit</h6>
                                         <input class="form-control" type="text" disabled value="C-03-03">
@@ -131,29 +136,6 @@ include 'includes/header.php';?>
                                             <option value="Close Contact">Close Contact</option>
                                             <option value="Positive">Positive</option>
                                         </select>
-
-                                        <h6 class="mt-4">Location Went</h6>
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" value=""
-                                                id="flexCheckDefault">
-                                            <label class="form-check-label" for="flexCheckDefault">
-                                                Gym
-                                            </label>
-                                        </div>
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" value=""
-                                                id="flexCheckChecked" checked>
-                                            <label class="form-check-label" for="flexCheckChecked">
-                                                Canteen
-                                            </label>
-                                        </div>
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" value=""
-                                                id="flexCheckChecked">
-                                            <label class="form-check-label" for="flexCheckChecked">
-                                                Basketball Court
-                                            </label>
-                                        </div>
 
                                         <h6 class="mt-4" require>PCR Kit Image</h6>
                                         <input class="form-control form-control-sm" type="file" required>

@@ -542,7 +542,7 @@ function getResidentByUnit(unit){
     }
 
     // ***************************
-    // ChatJS
+    // ChartJS
     
 const ctx = document.getElementById('myChart').getContext('2d');
 const myChart = new Chart(ctx, {

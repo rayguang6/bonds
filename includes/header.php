@@ -1,14 +1,15 @@
 
 <?php  
-require 'config/config.php';
+include 'config/config.php';
+include 'includes/classes/Resident.php';
 
+// If there is session, set the ic as session 
 if(isset($_SESSION['ic'])){
     $LoggedInIC = $_SESSION['ic'];
-    $residentDetailsQuery = mysqli_query($con,"SELECT * FROM resident WHERE ic ='$LoggedInIC'");
-    $Resident = mysqli_fetch_array($residentDetailsQuery);//global variable to retrieve logged in resident
-    // echo ($Resident['name']);
-
-}else{
+    $Resident = new Resident($con,$LoggedInIC);
+    $loggedInUnit = $Resident->getUnit();
+   
+}else{ //if there is no Session, send them to login page
     header("Location: index.php");
 }
 
@@ -93,14 +94,13 @@ if(isset($_SESSION['ic'])){
                             <a href="#" class=" text-decoration-none d-flex align-items-center justify-content-center"
                                 id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
                                 <div class="my-auto">
-                                    <img src="assets/images/profile-image.png" alt="profile" width="50" height="50"
-                                        class="rounded-circle">
+                                    <img src=<?php echo $Resident->getProfilePic()?> alt="profile" class="rounded-circle small_profile_picture" width="50" height="50">
                                 </div>
 
                                 <span class="d-none d-sm-inline ps-1">
                                     <div class="ms-1">
-                                        <h6 class="py-0 my-0"><?php echo $Resident['name']?></h6>
-                                        <small class="text-muted py-0 my-0">A-10-13</small>
+                                        <h6 class="py-0 my-0"><?php echo $Resident->getName()?></h6>
+                                        <small class="text-muted py-0 my-0"><?php echo $Resident->getUnit()?></small>
                                     </div>
                                 </span>
                             </a>
@@ -152,7 +152,7 @@ if(isset($_SESSION['ic'])){
                                 </button>
                                 <span class="collapse navbar-collapse" id="navbarSupportedContent">
                                     
-                                    <ul class="navbar-nav ms-auto">
+                                    <ul class="navbar-nav ms-auto align-items-center">
                                         
                                         <!-- topbar profile start -->
                                         <li class="nav-item dropdown ms-auto me-1">
@@ -160,11 +160,11 @@ if(isset($_SESSION['ic'])){
                                                 <div class="text-nowrap glassmorphism p-2" id="topbar_profile">
                                                     <div class="d-flex">
                                                         <div class="my-auto">
-                                                            <img class="rounded-circle" src="assets/images/profile-image.png" alt="profile picture" width="40" height="40">
+                                                            <img class="rounded-circle small_profile_picture" src=<?php echo $Resident->getProfilePic()?> alt="profile picture" width="40" height="40">
                                                         </div>
                                                         <div class="ms-1">
-                                                            <h6 class="py-0 my-0"> <?php echo $Resident['name']?></h6>
-                                                            <small class="text-muted py-0 my-0">A-10-13</small>
+                                                            <h6 class="py-0 my-0"> <?php echo $Resident->getName()?></h6>
+                                                            <small class="text-muted py-0 my-0"><?php echo $Resident->getUnit()?></small>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -175,7 +175,7 @@ if(isset($_SESSION['ic'])){
                                                     <a class="dropdown-item mygreen" href="profile.php">
                                                         <i class="fs-5 bi bi-person mygreen"></i>
                                                         <span class="ms-2 mygreen">Profile</span>
-                                                    </a>
+                                                    </a> 
                                                 </li>
                                                 <li>
                                                     <hr class="dropdown-divider">
@@ -190,7 +190,7 @@ if(isset($_SESSION['ic'])){
                                         </li>
                                         <!-- topbar profile end -->
 
-                                        <li class="nav-item dropdown mx-1">
+                                        <li class="nav-item dropdown mx-1 ">
 
                                             <a title="Announcements" class="nav-link" href="#" id="notification-dropdown"
                                                 role="button" data-bs-toggle="dropdown" aria-expanded="false">

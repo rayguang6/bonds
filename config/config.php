@@ -4,6 +4,7 @@ session_start();
 
 $timezone = date_default_timezone_set("Asia/Kuala_Lumpur");
 
+// (hostname, username, password, databaseName)
 $con = mysqli_connect("localhost", "root", "root", "bonds"); //Connection variable
 
 if(mysqli_connect_errno()) 
