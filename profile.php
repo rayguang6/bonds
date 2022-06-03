@@ -15,57 +15,90 @@ include 'includes/header.php';
             <hr />
             <div class="row">
               <div class="col">
-                <label for="profile-firstName" class="form-label">First Name</label>
-                <input type="text" class="form-control" value=<?php echo "'".$Resident->getName()."'"?> id="profile-firstName" required
+                <label for="profile-name" class="form-label">Name</label>
+                <input type="text" class="form-control" value=<?= "'".$Resident->getName()."'";?> id="profile-name" required
                   disabled />
               </div>
               <div class="col">
-                <label for="profile-lastName" class="form-label">Last Name</label>
-                <input type="text" class="form-control" value="Lim" id="profile-lastName" disabled required />
+                <label for="profile-ic" class="form-label">Identity Number</label>
+                <input type="text" class="form-control" value="<?= $Resident->getIc();?>" id="profile-ic" disabled
+                  required />
               </div>
             </div>
 
             <div class="row">
               <div class="col">
-                <label for="profile-Birthday" class="form-label">Day Of Birth</label>
-                <input type="date" class="form-control" value="2001-05-28" id="profile-Birthday" disabled
+                <label for="profile-dob" class="form-label">Date Of Birth (mm/dd/YYYY)</label>
+                <input type="date" class="form-control" value="<?= $Resident->getDob();?>" id="profile-dob" disabled
                   required />
               </div>
               <div class="col">
-                <label for="profile-Gender" class="form-label">Gender</label>
-                <select name="profile-Gender" id="profile-Gender" disabled class="form-select" disabled
+                <label for="profile-gender" class="form-label">Gender</label>
+                <select name="profile-gender" id="profile-gender" disabled class="form-select" disabled
                   required>
-                  <option value="Male">Male</option>
+                  <?php
+                    //use php to get the value inside DB and make it selected
+                    //make the current gender as selected 
+                    $currentGender = $Resident->getGender();
+                    $genderSelections = array("Male","Female","Other");
+
+                    $selectInputString =""; 
+                    
+                    foreach ($genderSelections as $gender) {
+                      if($gender==$currentGender){
+                        $selectInputString.= "<option value='$gender'>$gender</option>";
+                      }else{
+                        $selectInputString.="<option selected value='$currentGender'>$currentGender</option>";
+                      }
+                    }
+                    echo $selectInputString;
+                  ?>
+                  <!-- <option value="Male">Male</option>
                   <option value="Female">Female</option>
-                  <option value="Other">Others</option>
+                  <option value="Other">Other</option> -->
                 </select>
               </div>
             </div>
             <div class="row">
               <div class="col">
-                <label for="profile-Email" class="form-label">Email</label>
-                <input type="email" class="form-control" value="limzhengqian12@gmail.com" id="profile-Email"
+                <label for="profile-email" class="form-label">Email</label>
+                <input type="email" class="form-control" value="<?=$Resident->getEmail() ?>" id="profile-Email"
                   disabled required />
               </div>
               <div class="col">
-                <label for="profile-ph" class="form-label">Phone Number</label>
-                <input type="text" class="form-control" value="017-457 3538" id="profile-ph" disabled
+                <label for="profile-contact" class="form-label">Contact Number</label>
+                <input type="text" class="form-control" value="<?=$Resident->getContact() ?>" id="profile-class" disabled
                   required />
               </div>
             </div>
             <div class="row">
               <div class="col">
-                <label for="profile-ic" class="form-label">Identity Number</label>
-                <input type="text" class="form-control" value="010528-02-0587" id="profile-ic" disabled
+                <label for="profile-emergencyContact" class="form-label">Emergency Contact</label>
+                <input type="text" class="form-control" value="<?=$Resident->getEmergencyContact() ?>" id="profile-emergencyContact" disabled
                   required />
               </div>
               <div class="col">
                 <label for="profile-race" class="form-label">Race</label>
                 <select name="profile-race" id="profile-race" class="form-select" disabled required>
-                  <option value="Malay">Malay</option>
+                  <?php
+                    //make the current gender as selected 
+                    $currentRace = $Resident->getRace();
+                    $raceSelections = array("Malay","Chinese","Indian","Other");
+
+                    $raceOptionString = "<option selected value='$currentRace'>$currentRace</option>";
+                    
+                    // then create the other 2 option input
+                    foreach ($raceSelections as $race) {
+                      if($race!=$currentRace){
+                        $raceOptionString.= "<option value='$race'>$race</option>";
+                      }
+                    }
+                    echo $raceOptionString;
+                  ?>
+                  <!-- <option value="Malay">Malay</option>
                   <option value="Chinese">Chinese</option>
                   <option value="Indian">Indian</option>
-                  <option value="Others">Others</option>
+                  <option value="Others">Others</option> -->
                 </select>
               </div>
             </div>
@@ -74,10 +107,26 @@ include 'includes/header.php';
                 <label for="profile-vaccinationStatus" class="form-label">Vaccination Status</label>
                 <select name="profile-vaccinationStatus" id="profile-vaccinationStatus" class="form-select"
                   disabled required>
-                  <option value="0">Not Vaccinated At All</option>
+                  <?php
+                    //make the current gender as selected 
+                    $currentVaccineStatus = $Resident->getVaccineStatus();
+                    $vaccineSelections = array("Not Vaccinated At All","1st Dose","2nd Dose","3rd Dose (Booster)");
+
+                    $VaccineOptionString = "<option selected value='$currentVaccineStatus'>$currentVaccineStatus</option>";
+                    
+                    // then create the other 2 option input
+                    foreach ($vaccineSelections as $vaccineStatus) {
+                      if($vaccineStatus!=$currentVaccineStatus){
+                        $VaccineOptionString.= "<option value='$vaccineStatus'>$vaccineStatus</option>";
+                      }
+                    }
+                    echo $VaccineOptionString;
+                  ?>
+
+                  <!-- <option value="0">Not Vaccinated At All</option>
                   <option value="1">1st Dose</option>
                   <option value="2">2nd Dose</option>
-                  <option value="3">3rd Dose (Booster)</option>
+                  <option value="3">3rd Dose (Booster)</option> -->
                 </select>
               </div>
             </div>
@@ -96,22 +145,18 @@ include 'includes/header.php';
           <hr />
           <div class="row">
             <div class="col">
-              <label for="profile-blockNum" class="form-label">Block</label>
-              <input type="text" class="form-control" value="Block D" id="profile-blockNum" disabled />
-            </div>
-            <div class="col">
-              <label for="profile-roomNum" class="form-label">Room</label>
-              <input type="text" class="form-control" value='<?php echo $Resident->getUnit()?>' id="profile-roomNum" disabled />
+              <label for="profile-roomNum" class="form-label">Unit</label>
+              <input type="text" class="form-control" value='<?= $Resident->getUnit()?>' id="profile-roomNum" disabled />
             </div>
           </div>
           <div class="row">
             <div class="col">
               <label for="profile-carPark" class="form-label">Carpark ID</label>
-              <input type="text" class="form-control" value="A-10-13" id="profile-carPark" disabled />
+              <input type="text" class="form-control" value='<?= $Resident->getCarPark()?>' id="profile-carPark" disabled />
             </div>
             <div class="col">
-              <label for="profile-roomNum" class="form-label">Status</label>
-              <input type="text" class="form-control" value="Tenant" id="profile-status" disabled />
+              <label for="profile-status" class="form-label">Status</label>
+              <input type="text" class="form-control" value='<?= $Resident->getStatus()?>' id="profile-status" disabled />
             </div>
           </div>
         </div>
@@ -124,7 +169,7 @@ include 'includes/header.php';
       <div class="minimizeProfileSide" id="minimizeProfileSide" onclick="toggleSide()">
         <div id="toggleSideButton2"></div>
         <img src=<?php echo $Resident->getProfilePic()?> alt="profile-image" class="small_profile_picture">
-        <h6><?php echo $Resident->getName().' , '.$Resident->getUnit()?></h6>
+        <h6><?php echo $Resident->getName()?></h6>
       </div>
       <div class="col-3" id="profileSideBar">
         <div class="profileImgSide" id="profileImgSide">
