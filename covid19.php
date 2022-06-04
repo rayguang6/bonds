@@ -108,6 +108,13 @@ include 'includes/header.php';?>
                                 <button class="btn btn_mygreen" data-bs-toggle="modal"
                                     data-bs-target="#covidModal">Report</button>
                             </div>
+                            <!-- <div class="mycontainer mt-4">
+                                <h3>Update Vaccine</h3>
+                                <h6>Your Current Vaccine Status: <br> <?=$Resident->getVaccineStatus()?></h6>
+                                <p>Update your vaccine status here</p>
+                                <button class="btn btn_mygreen" data-bs-toggle="modal"
+                                    data-bs-target="#vaccineModal">Update</button>
+                            </div> -->
                         </div>
 
 
@@ -121,34 +128,49 @@ include 'includes/header.php';?>
                                         <button type="button" class="btn-close" data-bs-dismiss="modal"
                                             aria-label="Cancel"></button>
                                     </div>
-                                    <form class="modal-body" action="covid19.php" onsubmit="openModal()" id="myForm">
+                                    <form class="modal-body" action="covid19.php" method="POST" id="myForm">
 
-                                        <!-- Name and Block Will Be Get Dynamically -->
-                                        <h6 class="mt-4">Name</h6>
-                                        <input class="form-control" type="text" disabled value='<?php echo $Resident->getName()?>'>
-
+                                        <!-- Name and Block Will Be Get from db Dynamically -->
                                         <h6 class="mt-4">Unit</h6>
-                                        <input class="form-control" type="text" disabled value="C-03-03">
+                                        <!-- <input class="form-control" type="text" name="covid-unit" disabled> -->
+                                        <input type="text" class="form-control" name="covid-unit" value='<?=$loggedInUnit?>' readonly>
 
                                         <h6 class="mt-4">Reporting For</h6>
-                                        <select class="form-select" aria-label="Default select example" required>
+                                        <select class="form-select" aria-label="Default select example" name="covid-report_for" required>
                                             <option value="Negative">Negative</option>
                                             <option value="Close Contact">Close Contact</option>
                                             <option value="Positive">Positive</option>
                                         </select>
+                                        <p>(Your Current Covid Status: <?=$Resident->getCovidStatus()?>)</p>
 
-                                        <h6 class="mt-4" require>PCR Kit Image</h6>
-                                        <input class="form-control form-control-sm" type="file" required>
+                                        <h6 class="mt-4">PCR Kit Image</h6>
+                                        <!-- <input class="form-control form-control-sm" type="file" required> -->
 
-                                        <h6 class="mt-4">Datetime Infected</h6>
-                                        <input type="datetime-local" name="datetime" id="datetime" required>
+                                        <h6 class="mt-4">Date Infected</h6>
+                                        <input type="date" name="covid-date">
+
+                                        <input type="hidden" name="covid-type" value="covid">
+
                                         <div class="modal-footer">
                                             <button type="button" class="btn btn-secondary"
                                                 data-bs-dismiss="modal">Cancel</button>
-                                            <button type="submit" value="Submit" class="btn btn_mygreen"
-                                                id="submitreport">Submit Report</button>
+                                            <button type="submit" class="btn btn_mygreen" name="covid_report_btn" >Submit Report</button>
                                         </div>
                                     </form>
+
+                                    <?php
+                                        // Method To Submit Form
+                                        if(isset($_POST['covid_report_btn'])){
+                                            echo $covid_unit = $_POST['covid-unit'];
+                                            echo $report_for = $_POST['covid-report_for'];
+                                            echo $date = $_POST['covid-date'];
+                                            echo $type = $_POST['covid-type'];
+                                            // $evidence = $_POST['covid-evidence'];
+
+                                        $query = mysqli_query($con, "INSERT INTO covidreport VALUES ('','$covid_unit','$type','$report_for','evidence','$date')");
+                                        }
+
+                                    ?>
 
                                 </div>
                             </div>
@@ -179,16 +201,16 @@ include 'includes/header.php';?>
                     <!-- Thank you Pop-up Modal End-->
 
                     <script>
-                        $('#myForm').on('submit', function (e) {
-                            $('#covidModal').modal('hide');
-                            $('#myModal').modal('show');
-                            e.preventDefault();
-                        });
-                        $('#myModal').on('hidden.bs.modal', function () {
-                            document.getElementById('myForm').reset();
-                        })
+                        // $('#myForm').on('submit', function (e) {
+                        //     $('#covidModal').modal('hide');
+                        //     $('#myModal').modal('show');
+                        //     e.preventDefault();
+                        // });
+                        // $('#myModal').on('hidden.bs.modal', function () {
+                        //     document.getElementById('myForm').reset();
+                        // })
                     </script>
 
     <!-- This file only JS -->
-    <script src="assets/js/covid.js"></script>
+    <!-- <script src="assets/js/covid.js"></script> -->
 <?php include 'includes/footer.php';?>

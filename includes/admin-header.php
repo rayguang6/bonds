@@ -2,6 +2,16 @@
 <?php  
 include 'config/config.php';
 include 'includes/classes/Resident.php';
+
+// If there is session, set the ic as session 
+if(isset($_SESSION['ic'])){
+    $LoggedInIC = $_SESSION['ic'];
+    if($_SESSION['login_type']!='admin'){
+        header("Location: index.php");
+    }
+}else{ //if there is no Session, send them to login page
+    header("Location: index.php");
+}
 ?>
 
 <!DOCTYPE html>

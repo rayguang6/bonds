@@ -13,6 +13,14 @@ if(isset($_POST['create_resident'])){
     $query = mysqli_query($con, "INSERT INTO resident (ic,name) VALUES ('$ic','$name')");
     $query = mysqli_query($con, "UPDATE unit SET owner_ic='$ic' WHERE unit_no='$unit'");//Need to pre create the unit in order to assign the unit to resident
 }
+
+if(isset($_POST['covid_report'])){
+    $status = $_POST['status'];
+
+    $query = mysqli_query($con, "INSERT INTO resident (ic,name) VALUES ('$ic','$name')");
+}
+
+
 ?>
 
 <script src="assets/js/manageuser.js"></script>
@@ -56,7 +64,7 @@ if(isset($_POST['create_resident'])){
 
                                     <!-- Use PHP to fetch from database and create table row -->
                                     <?php
-                                        $data_query = mysqli_query($con, "SELECT * FROM unit RIGHT JOIN resident ON unit.owner_ic = resident.ic");
+                                        $data_query = mysqli_query($con, "SELECT * FROM unit INNER JOIN resident ON unit.owner_ic = resident.ic");
 
                                         if(mysqli_num_rows($data_query) > 0)
                                         {

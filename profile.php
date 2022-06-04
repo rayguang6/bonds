@@ -46,9 +46,9 @@ include 'includes/header.php';
                     
                     foreach ($genderSelections as $gender) {
                       if($gender==$currentGender){
-                        $selectInputString.= "<option value='$gender'>$gender</option>";
-                      }else{
                         $selectInputString.="<option selected value='$currentGender'>$currentGender</option>";
+                      }else{
+                        $selectInputString.= "<option value='$gender'>$gender</option>";
                       }
                     }
                     echo $selectInputString;
@@ -105,29 +105,19 @@ include 'includes/header.php';
             <div class="row">
               <div class="col">
                 <label for="profile-vaccinationStatus" class="form-label">Vaccination Status</label>
-                <select name="profile-vaccinationStatus" id="profile-vaccinationStatus" class="form-select"
+
+                <!-- Since it will not be editable, so changed it to text input instead of select box -->
+                <input type="text" class="form-control" value="<?=$Resident->getVaccineStatus() ?>" id="profile-vaccinationStatus" disabled
+                  required />
+
+                <!-- <select name="profile-vaccinationStatus" id="profile-vaccinationStatus" class="form-select"
                   disabled required>
-                  <?php
-                    //make the current gender as selected 
-                    $currentVaccineStatus = $Resident->getVaccineStatus();
-                    $vaccineSelections = array("Not Vaccinated At All","1st Dose","2nd Dose","3rd Dose (Booster)");
 
-                    $VaccineOptionString = "<option selected value='$currentVaccineStatus'>$currentVaccineStatus</option>";
-                    
-                    // then create the other 2 option input
-                    foreach ($vaccineSelections as $vaccineStatus) {
-                      if($vaccineStatus!=$currentVaccineStatus){
-                        $VaccineOptionString.= "<option value='$vaccineStatus'>$vaccineStatus</option>";
-                      }
-                    }
-                    echo $VaccineOptionString;
-                  ?>
-
-                  <!-- <option value="0">Not Vaccinated At All</option>
+                  <option value="0">Not Vaccinated At All</option>
                   <option value="1">1st Dose</option>
                   <option value="2">2nd Dose</option>
-                  <option value="3">3rd Dose (Booster)</option> -->
-                </select>
+                  <option value="3">3rd Dose (Booster)</option>
+                </select> -->
               </div>
             </div>
           </div>
@@ -148,15 +138,9 @@ include 'includes/header.php';
               <label for="profile-roomNum" class="form-label">Unit</label>
               <input type="text" class="form-control" value='<?= $Resident->getUnit()?>' id="profile-roomNum" disabled />
             </div>
-          </div>
-          <div class="row">
             <div class="col">
               <label for="profile-carPark" class="form-label">Carpark ID</label>
               <input type="text" class="form-control" value='<?= $Resident->getCarPark()?>' id="profile-carPark" disabled />
-            </div>
-            <div class="col">
-              <label for="profile-status" class="form-label">Status</label>
-              <input type="text" class="form-control" value='<?= $Resident->getStatus()?>' id="profile-status" disabled />
             </div>
           </div>
         </div>

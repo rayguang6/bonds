@@ -64,7 +64,6 @@ if(isset($_GET['resident_id']))
 if(isset($_POST['update_student']))
 {
     $student_id = mysqli_real_escape_string($con, $_POST['editResident-ic']);
-
     $name = mysqli_real_escape_string($con, $_POST['editResident-name']);
     $contact = mysqli_real_escape_string($con, $_POST['editResident-contact']);
 
@@ -101,6 +100,5 @@ if(isset($_POST['update_student']))
         return;
     }
 }
-
 
 ?>

@@ -45,8 +45,8 @@ class Resident{
     public function getProfilePic(){
         return $this->resident['profile_pic'];
     }
-    public function getStatus(){
-        return $this->resident['status'];
+    public function getCovidStatus(){
+        return $this->resident['covid_status'];
     }
     public function getPassword(){
         return $this->resident['password'];

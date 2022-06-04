@@ -1,6 +1,13 @@
 <?php 
 include 'config/config.php';
 include 'includes/controllers/login_controller.php';
+
+// if there is session already, redirects them to dashboard
+if (isset($_SESSION['login_type'])){
+	$_SESSION['login_type']=='admin'?//redirect to index.php which is the main page or dashboard
+		header("Location: admin-dashboard.php"):header("Location: dashboard.php");
+}
+
 ?>
 
 <!DOCTYPE html>

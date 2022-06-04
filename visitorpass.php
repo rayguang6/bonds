@@ -8,33 +8,36 @@ include 'includes/header.php';?>
             representative is required to register.</h6>
 
         <form action="visitorpass.php" method="POST" class="visitorForm">
+            <!-- use $loggedInUnit to-->
+            <input type="hidden" name="visitor-unit" value='<?=$loggedInUnit?>'>
+
             <!-- visitor details -->
             <h4>Visitor Details</h4>
             <div class="mb-3 visitorName">
                 <label for="visitorname" class="form-label">Visitor Name</label>
                 <input type="text" class="form-control w-50" id="visitorname"
-                    placeholder="e.g Karry Wang">
+                    placeholder="e.g Karry Wang" name="visitor-name">
             </div>
             <div class="mb-3 visitorIC">
                 <label for="visitorname" class="form-label">Visitor IC Number</label>
                 <input type="text" class="form-control w-50" id="visitoric"
-                    placeholder="e.g 980605-03-7488 (with '-')">
+                    placeholder="e.g 980605-03-7488 (with '-')" name="visitor-ic">
             </div>
             <div class="mb-3 visitorPhone">
                 <label for="visitorphone" class="form-label">Visitor Phone</label>
                 <input type="text" class="form-control w-50" id="visitorphone"
-                    placeholder="e.g 012-3456789 (with '-')">
+                    placeholder="e.g 012-3456789 (with '-')" name="visitor-phone">
             </div>
 
             <div class="mb-3 visitorCarModel">
                 <label for="visitorcar" class="form-label">Visitor Car Model & Color</label>
                 <input type="text" class="form-control w-50" id="visitorcar"
-                    placeholder="e.g BMW M4 Blue">
+                    placeholder="e.g BMW M4 Blue" name="visitor-car">
             </div>
             <div class="mb-3 visitorCarNum">
                 <label for="visitorcarnum" class="form-label">Visitor Car Register Number</label>
                 <input type="text" class="form-control w-50" id="visitorcarnum"
-                    placeholder="e.g PPP1234">
+                    placeholder="e.g PPP1234" name="visitor-carplate">
             </div>
             <br><br>
 
@@ -45,51 +48,47 @@ include 'includes/header.php';?>
                 <div class="row mb-3">
                     <div class="col-auto">
                         <h6>Start Time:</h6>
-                        <input type="datetime-local" class="form-control w-40" name="datetime1"
-                            id="datetime1">
+                        <input type="datetime-local" class="form-control w-40"
+                            id="datetime1" name="visitor-starttime">
                     </div>
                     <div class="col-auto">
                         <h6>End Time:</h6>
-                        <input type="datetime-local" class="form-control w-40" name="datetime2"
-                            id="datetime2">
+                        <input type="datetime-local" class="form-control w-40"
+                            id="datetime2" name="visitor-endtime">
                     </div>
                 </div>
             </div>
-            <h6 for="visitingaddress" class="form-label mt-4">Visiting Address at <img
-                    src="assets/images/resident.png" alt="Bonds Logo" width="75"></h6>
-            <div class="container mb-3">
-                <div class="row">
-                    <div class="col-auto">
-                        <select class="form-select visitingBlock"
-                            aria-label="Default select example">
-                            <option selected>Block</option>
-                            <option value="A">Block A</option>
-                            <option value="B">Block B</option>
-                            <option value="C">Block C</option>
-                            <option value="C">Block D</option>
-                        </select>
-                    </div>
-                    <div class="col-1">
-                        <input type="text" class="form-control w-2 visitingFloor" id="visitingFloor"
-                            placeholder="Floor">
-                    </div>
-                    <div class="col-1">
-                        <input type="text" class="form-control w-2 visitingUnit" id="visitingUnit"
-                            placeholder="Unit">
-                    </div>
-                </div>
-            </div>
+            
             <div class="mb-3 numOfVisitors">
                 <h6 for="numofvisitors" class="form-label mt-4">Number of Visitor(s)</h6>
-                <input type="text" class="form-control w-50" id="numofvisitors" placeholder="e.g 5">
+                <input type="number" class="form-control w-50" id="numofvisitors" placeholder="e.g 5" name="visitor-num">
             </div>
             <br><br>
+            <input type="submit"  class="me-lg-3 btn btn_mygreen" name="visitorpass_btn">
         </form>
+
+        <?php
+        // Method To Submit Form
+        if(isset($_POST['visitorpass_btn'])){
+           $unit = $_POST['visitor-unit'];
+           $name = $_POST['visitor-name'];
+           $ic = $_POST['visitor-ic'];
+           $phone = $_POST['visitor-phone'];
+           $car = $_POST['visitor-car'];
+           $carplate = $_POST['visitor-carplate'];
+           $starttime = $_POST['visitor-starttime'];
+           $endtime = $_POST['visitor-endtime'];
+           $number = $_POST['visitor-num'];
+
+           $query = mysqli_query($con, "INSERT INTO visitorpass VALUES ('','$unit','$name','$ic','$phone','$car','$carplate','$starttime','$endtime','$number')");
+        }
+
+        ?>
 
         <!-- Temp Button trigger modal -->
         <!-- TODO Put back into the form later -->
-        <button type="" class="btn btn_mygreen" data-bs-toggle="modal"
-            data-bs-target="#visitor-modal">Submit Application</button>
+        <!-- <button type="" class="btn btn_mygreen" data-bs-toggle="modal"
+            data-bs-target="#visitor-modal">Submit Application</button> -->
 
         <!-- Confirmation Popup Modal -->
         <div class="modal fade" id="visitor-modal" tabindex="-1"
@@ -120,46 +119,44 @@ include 'includes/header.php';?>
         <table class="table">
             <thead>
                 <tr>
-                    <th scope="col">Date</th>
                     <th scope="col">Visitor Name</th>
-                    <th scope="col">Car Registration Number</th>
-                    <th scope="col">No. of Visitors</th>
+                    <th scope="col">IC</th>
+                    <th scope="col">Phone</th>
+                    <th scope="col">Car</th>
+                    <th scope="col">Car Plate</th>
                     <th scope="col">Start</th>
                     <th scope="col">End</th>
-                    <th scope="col"></th>
+                    <th scope="col">No. of Visitors</th>
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td>4 April 2022</td>
-                    <td>Mr Suddenly</td>
-                    <td>PNG6779</td>
-                    <td>5</td>
-                    <td>1000</td>
-                    <td>1100</td>
-                    <td><i class="ms-1 fa fa-download" aria-hidden="true"></i><i
-                            class="ms-1 fa fa-eye" aria-hidden="true"></i></td>
-                </tr>
-                <tr>
-                    <td>3 April 2022</td>
-                    <td>Mr Handsome</td>
-                    <td>WAE322</td>
-                    <td>1</td>
-                    <td>1500</td>
-                    <td>1600</td>
-                    <td><i class="ms-1 fa fa-download" aria-hidden="true"></i><i
-                            class="ms-1 fa fa-eye" aria-hidden="true"></i></td>
-                </tr>
-                <tr>
-                    <td>1 April 2022</td>
-                    <td>Ms May</td>
-                    <td>KKT9937</td>
-                    <td>3</td>
-                    <td>1200</td>
-                    <td>1300</td>
-                    <td><i class="ms-1 fa fa-download" aria-hidden="true"></i><i
-                            class="ms-1 fa fa-eye" aria-hidden="true"></i></td>
-                </tr>
+
+                <?php
+                // Get Visitor Pass for loggedIn Unit
+                $query = mysqli_query($con, "SELECT * FROM visitorpass WHERE unit='$loggedInUnit' ORDER BY start_time DESC");
+
+                if(mysqli_num_rows($query) > 0)
+                {
+                    foreach($query as $visitorpass)
+                    {
+                ?>
+                        <tr>
+                            <td><?= $visitorpass['visitor_name'] ?></td>
+                            <td><?= $visitorpass['visitor_ic'] ?></td>
+                            <td><?= $visitorpass['visitor_contact'] ?></td>
+                            <td><?= $visitorpass['car_details'] ?></td>
+                            <td><?= $visitorpass['car_plate'] ?></td>
+                            <td><?= $visitorpass['start_time'] ?></td>
+                            <td><?= $visitorpass['end_time'] ?></td>
+                            <td><?= $visitorpass['visitor_num'] ?></td>
+                        </tr>
+                <?php
+                        }
+                    }
+                    else{
+                       echo "<td>You do not have any visitor pass previously</td>";
+                    }
+                ?>
             </tbody>
         </table>
     </div>

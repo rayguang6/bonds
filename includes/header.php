@@ -8,6 +8,9 @@ if(isset($_SESSION['ic'])){
     $LoggedInIC = $_SESSION['ic'];
     $Resident = new Resident($con,$LoggedInIC);
     $loggedInUnit = $Resident->getUnit();
+    if($_SESSION['login_type']!='resident'){
+        header("Location: index.php");
+    }
    
 }else{ //if there is no Session, send them to login page
     header("Location: index.php");
@@ -33,6 +36,12 @@ if(isset($_SESSION['ic'])){
     </head>
 
     <body>
+    <script>
+	// prevent form resubmission
+	if ( window.history.replaceState ) {
+		window.history.replaceState( null, null, window.location.href );
+	}
+    </script>
 
         <!-- Outermost Container -->
         <div class="container-fluid">

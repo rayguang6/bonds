@@ -1,7 +1,6 @@
 <?php
 
 if(isset($_POST['login_button'])) {
-
     // Get login type (resident / admin) from the select box value
     $login_type = $_POST['login_type']; //'resident' or 'admin'
     
@@ -18,8 +17,9 @@ if(isset($_POST['login_button'])) {
 	if($check_login_query == 1) {
 		$row = mysqli_fetch_array($check_database_query);// get result as an array
 		$_SESSION['ic'] = $row['ic'];//get the username inside the array and assign to session
-        $login_type=='admin'?
-		    header("Location: admin-dashboard.php"):header("Location: dashboard.php");//redirect to index.php which is the main page or dashboard
+		$_SESSION['login_type'] = $login_type; //set login type session
+        $login_type=='admin'?//redirect to index.php which is the main page or dashboard
+			header("Location: admin-dashboard.php"):header("Location: dashboard.php");
 		exit();
 	}
 	else {
@@ -28,7 +28,6 @@ if(isset($_POST['login_button'])) {
         $message = "Wrong Password";
         echo "<script>alert('$message');</script>";
 	}
-
 
 }
 
