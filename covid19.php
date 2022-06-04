@@ -161,10 +161,10 @@ include 'includes/header.php';?>
                                     <?php
                                         // Method To Submit Form
                                         if(isset($_POST['covid_report_btn'])){
-                                            echo $covid_unit = $_POST['covid-unit'];
-                                            echo $report_for = $_POST['covid-report_for'];
-                                            echo $date = $_POST['covid-date'];
-                                            echo $type = $_POST['covid-type'];
+                                            $covid_unit = $_POST['covid-unit'];
+                                            $report_for = $_POST['covid-report_for'];
+                                            $date = $_POST['covid-date'];
+                                            $type = $_POST['covid-type'];
                                             // $evidence = $_POST['covid-evidence'];
 
                                         $query = mysqli_query($con, "INSERT INTO covidreport VALUES ('','$covid_unit','$type','$report_for','evidence','$date')");

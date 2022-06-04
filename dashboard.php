@@ -9,28 +9,33 @@ include 'includes/header.php';?>
             Welcome to Bonds App </h2>
             <p class="text-muted m-0">Get in touch with us!</p>
         </div>
-
+        
+        <h1 class="mt-4 text-center">Admin Announcements:</h1>
         <!-- New Announcement Container -->
         <div class="col-12 col-lg-8 mt-4 mx-auto">
-            <div class="mycontainer py-0">
-                        <h2>View Announcements</h2>
-                    <!-- Button Groups -->
-                    <div class="my-3">
-                        <button type="button" id="A" onclick="filterBlock('Block A')"
-                            class="btn border blockButton">A</button>
-                        <button type="button" id="B" onclick="filterBlock('Block B')"
-                            class="btn border blockButton">B</button>
-                        <button type="button" id="C" onclick="filterBlock('Block C')"
-                            class="btn border blockButton">C</button>
-                        <button type="button" id="D" onclick="filterBlock('Block D')"
-                            class="btn border blockButton">D</button>
-                    </div>
-                <h6>Click to Filter Based On Blocks</h6>
-                <p class="text-muted">Showing Announcement of <span id="block-span">All</span></p>
-            </div>
+            <?php
+                $data_query = mysqli_query($con, "SELECT * FROM announcement ORDER BY date_time DESC");
+
+                if(mysqli_num_rows($data_query) > 0)
+                {
+                    foreach($data_query as $announcement)
+                    {
+                        $formattedDate = $announcement['date_time'];
+            ?>
+                    <div class="card mt-4 mycontainer">
+                        <div class="card-body">
+                            <h5><?=$announcement['title']?></h5>
+                            <span class="text-muted ms-auto"><?=$formattedDate?></span>
+                            <p class="card-text mt-3" style="white-space: pre-line"><?=$announcement['description']?></p>
+                        </div>
+                    </div>  
+            <?php
+                    }
+                }
+            ?>
 
             <!-- Container To Get Announcements -->
-            <div id="announcement_container"></div>
+            <!-- <div id="announcement_container"></div> -->
         </div>
         
     </div>

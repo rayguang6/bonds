@@ -1,7 +1,6 @@
 <?php 
 $pageTitle = "Manage Residents";
 include 'includes/admin-header.php';
-ini_set('display_errors',1); error_reporting(E_ALL);
 
 // Create Resident Function and insert into unit
 if(isset($_POST['create_resident'])){
@@ -13,13 +12,6 @@ if(isset($_POST['create_resident'])){
     $query = mysqli_query($con, "INSERT INTO resident (ic,name) VALUES ('$ic','$name')");
     $query = mysqli_query($con, "UPDATE unit SET owner_ic='$ic' WHERE unit_no='$unit'");//Need to pre create the unit in order to assign the unit to resident
 }
-
-if(isset($_POST['covid_report'])){
-    $status = $_POST['status'];
-
-    $query = mysqli_query($con, "INSERT INTO resident (ic,name) VALUES ('$ic','$name')");
-}
-
 
 ?>
 

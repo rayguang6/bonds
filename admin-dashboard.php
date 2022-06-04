@@ -1,6 +1,8 @@
 <?php 
 $pageTitle = "Dashboard";
-include 'includes/admin-header.php';?>
+include 'includes/admin-header.php';
+?>
+
 
                  <div class="row p-0">
                         <div class="col-md-6 col-lg-4 mt-4 mt-lg-0">
@@ -44,21 +46,30 @@ include 'includes/admin-header.php';?>
                                 <!-- announcement submit form -->
                                 <div class="mycontainer">
                                     <h2>Post A New Announcement</h2>
-                                    <form id="annoucement-form">
+                                    <form id="" method="POST" action="admin-dashboard.php">
                                         <div class="input-group mb-3">
-                                            <input type="text" class="form-control" id="title" placeholder="Title">
+                                            <input type="text" class="form-control" placeholder="Title" name="announcement-title">
                                         </div>
                                         <div class="input-group mb-3">
-                                            <textarea class="form-control" id="content"
-                                                placeholder="Your Announcement Content Here"></textarea>
+                                            <textarea class="form-control" placeholder="Your Announcement Content Here" name="announcement-content"></textarea>
                                         </div>
-                                        <!-- TODO: 
-                                            -Make Checkbox to target Blocks
-                                            -image upload input
-                                        -->
+                                        <button type="submit" class="btn btn-primary" name="announcement_btn" >Post</button>
                                     </form>
-                                    <button class="btn btn-primary" onclick="submitAnnouncement()">Submit</button>
                                 </div>
+
+                                <?php
+                                        // Method To Submit Announcement
+                                        if(isset($_POST['announcement_btn'])){
+                                            $title = $_POST['announcement-title'];
+                                            $content = $_POST['announcement-content'];
+                                            $time = date("Y-m-d h:i:s");
+
+                                            if($title!=""){
+                                                $query = mysqli_query($con, "INSERT INTO announcement VALUES ('','$title','$content','$time')");
+                                            }
+                                        }
+
+                                    ?>
     
                                 <!-- Announcement Container -->
                                 <div id="announcement_container"></div>

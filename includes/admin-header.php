@@ -35,6 +35,12 @@ if(isset($_SESSION['ic'])){
 </head>
 
 <body>
+<script>
+	// prevent form resubmission
+	if ( window.history.replaceState ) {
+		window.history.replaceState( null, null, window.location.href );
+	}
+</script>
 
     <!-- Outermost Container -->
     <div class="container-fluid">
