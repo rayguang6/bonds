@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 04, 2022 at 06:40 AM
+-- Generation Time: Jun 04, 2022 at 11:33 AM
 -- Server version: 10.4.18-MariaDB
 -- PHP Version: 8.0.3
 
@@ -44,6 +44,28 @@ INSERT INTO `admin` (`ic`, `password`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `announcement`
+--
+
+CREATE TABLE `announcement` (
+  `announcement_id` int(11) NOT NULL,
+  `title` varchar(100) NOT NULL,
+  `description` text NOT NULL,
+  `date_time` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `announcement`
+--
+
+INSERT INTO `announcement` (`announcement_id`, `title`, `description`, `date_time`) VALUES
+(1, 'Electric Maintenance on 16 Jun', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit, nulla. Magnam, tenetur quae nemo nobis cumque, corrupti dolores totam qui consequatur iusto quibusdam? Neque, ratione eius, sit officiis laborum sequi repudiandae mollitia blanditiis inventore maiores est ullam quasi deleniti itaque modi, aspernatur pariatur hic! Perferendis quaerat exercitationem incidunt. Reprehenderit, dolor!\r\n\r\n', '2022-06-04 10:27:43'),
+(2, 'Announcement Title\r\n', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit, nulla. Magnam, tenetur quae nemo nobis cumque, corrupti dolores totam qui consequatur iusto quibusdam? Neque, ratione eius, sit officiis laborum sequi repudiandae mollitia blanditiis inventore maiores est ullam quasi deleniti itaque modi, aspernatur pariatur hic! Perferendis quaerat exercitationem incidunt. Reprehenderit, dolor!\r\n\r\n', '2022-05-01 16:27:43'),
+(3, 'New Announce', 'body', '2022-06-20 10:44:15');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `covidreport`
 --
 
@@ -61,16 +83,37 @@ CREATE TABLE `covidreport` (
 --
 
 INSERT INTO `covidreport` (`report_id`, `reporter_unit`, `report_type`, `report_for_status`, `evidence`, `date`) VALUES
-(2, '', 'covid', 'Close Contact', 'evidence', '2022-06-03'),
-(3, '', 'covid', 'Negative', 'evidence', '2022-06-10'),
-(4, '', 'covid', 'Positive', 'evidence', '2022-06-09'),
-(5, '', 'covid', 'Close Contact', 'evidence', '2022-06-03'),
 (6, 'A-1-01', 'covid', 'Positive', 'evidence', '2022-05-31'),
-(7, '', 'covid', 'Close Contact', 'evidence', '2022-07-09'),
-(8, '', 'covid', 'Close Contact', 'evidence', '2022-06-17'),
 (9, 'A-1-01', 'covid', 'Close Contact', 'evidence', '0000-00-00'),
-(10, '', 'covid', 'Close Contact', 'evidence', '2022-05-01'),
 (11, 'A-1-01', 'covid', 'Positive', 'evidence', '2022-08-04');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `explore`
+--
+
+CREATE TABLE `explore` (
+  `facility_addr` varchar(30) NOT NULL,
+  `facility_name` varchar(50) NOT NULL,
+  `facility_type` varchar(30) NOT NULL,
+  `operating_time` varchar(30) NOT NULL,
+  `operating_day` varchar(50) NOT NULL,
+  `facility_status` varchar(30) NOT NULL,
+  `image` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `explore`
+--
+
+INSERT INTO `explore` (`facility_addr`, `facility_name`, `facility_type`, `operating_time`, `operating_day`, `facility_status`, `image`) VALUES
+('A-03-G1', 'Gymnasium', 'sports', '10am - 11pm', 'Monday to Friday', 'Under Maintenance', 'https://media.istockphoto.com/photos/modern-gym-picture-id492061477?k=20&m=492061477&s=612x612&w=0&h=b_r1Ydu6FolOFQjV7INSIM0fOqO7HCQfUJx-Zb1QXP4='),
+('A-03-P1', 'Park', 'leisure', '10am - 11pm', 'Monday to Friday', 'Opened', 'https://media.istockphoto.com/photos/the-parks-meadows-and-thick-woods-under-the-clear-sky-in-spring-picture-id1211975936?k=20&m=1211975936&s=612x612&w=0&h=DvSUQJ_ZI9yw8c0VN9FxRv73RIZ6v1RBqrlM6Uctf2c='),
+('A-03-R1', 'Party Room', 'others', '10am - 11pm', 'Saturday to Sunday', 'Closed', 'https://media.istockphoto.com/photos/halloween-food-table-picture-id1183577476?k=20&m=1183577476&s=612x612&w=0&h=30lji704Yivz_72Uq0syZ7MNP8UQBVN53SJt1ageaUg='),
+('A-03-S1', 'Swimming Pool', 'sports', '10am - 11pm', 'Saturday to Sunday', 'Opened', 'https://media.istockphoto.com/photos/swimming-pool-accented-with-a-waterfall-picture-id134108091?k=20&m=134108091&s=612x612&w=0&h=It4OD29epLpx3glQlVAckdezTu7dmdt-Ei3XoHfeFVw='),
+('B-03-C1', 'Community Hall', 'others', '10am - 11pm', 'Saturday to Sunday', 'Under Maintenance', 'https://media.istockphoto.com/photos/committee-chairperson-presents-plan-for-beautification-at-homeowners-picture-id1158889642?k=20&m=1158889642&s=612x612&w=0&h=W62gu5jCoJuF_sH8agmN9o-6xQS273MtDmG0MKZCiWw='),
+('C-03-A1', 'Playground', 'leisure', '10am - 11pm', 'Saturday to Sunday', 'Under Maintenance', 'https://media.istockphoto.com/photos/colorful-playground-equipment-picture-id898182848?k=20&m=898182848&s=612x612&w=0&h=LR0SnWTuQrEJGMaipiC8MP6dhF6GHpO3vOrQlquZnQE=');
 
 -- --------------------------------------------------------
 
@@ -183,10 +226,22 @@ ALTER TABLE `admin`
   ADD PRIMARY KEY (`ic`);
 
 --
+-- Indexes for table `announcement`
+--
+ALTER TABLE `announcement`
+  ADD PRIMARY KEY (`announcement_id`);
+
+--
 -- Indexes for table `covidreport`
 --
 ALTER TABLE `covidreport`
   ADD PRIMARY KEY (`report_id`);
+
+--
+-- Indexes for table `explore`
+--
+ALTER TABLE `explore`
+  ADD PRIMARY KEY (`facility_addr`);
 
 --
 -- Indexes for table `resident`
@@ -209,6 +264,12 @@ ALTER TABLE `visitorpass`
 --
 -- AUTO_INCREMENT for dumped tables
 --
+
+--
+-- AUTO_INCREMENT for table `announcement`
+--
+ALTER TABLE `announcement`
+  MODIFY `announcement_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `covidreport`
