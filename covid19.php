@@ -108,6 +108,8 @@ include 'includes/header.php';?>
                                 <button class="btn btn_mygreen" data-bs-toggle="modal"
                                     data-bs-target="#covidModal">Report</button>
                             </div>
+
+                            <!-- For Trggering The Update Vaccine  -->
                             <!-- <div class="mycontainer mt-4">
                                 <h3>Update Vaccine</h3>
                                 <h6>Your Current Vaccine Status: <br> <?=$Resident->getVaccineStatus()?></h6>
@@ -128,7 +130,7 @@ include 'includes/header.php';?>
                                         <button type="button" class="btn-close" data-bs-dismiss="modal"
                                             aria-label="Cancel"></button>
                                     </div>
-                                    <form class="modal-body" action="covid19.php" method="POST" id="myForm">
+                                    <form class="modal-body" action="covid19.php" method="POST" id="myForm" enctype="multipart/form-data">
 
                                         <!-- Name and Block Will Be Get from db Dynamically -->
                                         <h6 class="mt-4">Unit</h6>
@@ -144,10 +146,11 @@ include 'includes/header.php';?>
                                         <p>(Your Current Covid Status: <?=$Resident->getCovidStatus()?>)</p>
 
                                         <h6 class="mt-4">PCR Kit Image</h6>
-                                        <!-- <input class="form-control form-control-sm" type="file" required> -->
+                                        <input class="form-control form-control-sm" type="file" name="covid-evidence" required>
+
 
                                         <h6 class="mt-4">Date Infected</h6>
-                                        <input type="date" name="covid-date">
+                                        <!-- <input type="date" name="covid-date"> -->
 
                                         <input type="hidden" name="covid-type" value="covid">
 
@@ -163,13 +166,18 @@ include 'includes/header.php';?>
                                         if(isset($_POST['covid_report_btn'])){
                                             $covid_unit = $_POST['covid-unit'];
                                             $report_for = $_POST['covid-report_for'];
-                                            $date = $_POST['covid-date'];
+                                            // $date = $_POST['covid-date'];
+                                            $date = date("Y-m-d");
                                             $type = $_POST['covid-type'];
-                                            // $evidence = $_POST['covid-evidence'];
+                                            
+                                            // $myimage = addslashes(file_get_contents($_FILES['covid-evidence']['name']));
+                                            $imageName = ($_FILES['covid-evidence']['name']);
+                                            $imageData = file_get_contents($_FILES['covid-evidence']['tmp_name']);
+                                            $imageType = ($_FILES['covid-evidence']['type']);
 
+                                            // Change the evidence later
                                         $query = mysqli_query($con, "INSERT INTO covidreport VALUES ('','$covid_unit','$type','$report_for','evidence','$date')");
                                         }
-
                                     ?>
 
                                 </div>
@@ -212,5 +220,5 @@ include 'includes/header.php';?>
                     </script>
 
     <!-- This file only JS -->
-    <!-- <script src="assets/js/covid.js"></script> -->
+    <script src="assets/js/covid.js"></script>
 <?php include 'includes/footer.php';?>

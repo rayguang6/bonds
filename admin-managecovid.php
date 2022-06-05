@@ -66,8 +66,20 @@ include 'includes/admin-header.php';?>
                                         <th scope="col">Report Type</th>
                                         <th scope="col">Action</th>
                                     </tr>
+
+                                    <img src="" alt="">
                                 </thead>
-                                <tbody id="report_table">
+                                <tbody id="">
+                                    <?php
+                                    
+                                    $query = mysqli_query($con, "SELECT * FROM covidreport");
+
+                                    while($row = mysqli_fetch_array($query)){
+                                        $image = "data:image/jpg;base64".base64_encode($row['evidence']);
+                                        echo "<img src=$image><br>";
+                                    }
+                                    
+                                    ?>
                                 </tbody>
                             </table>
                         </div>

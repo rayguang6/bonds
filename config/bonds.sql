@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 04, 2022 at 11:33 AM
+-- Generation Time: Jun 05, 2022 at 11:58 AM
 -- Server version: 10.4.18-MariaDB
 -- PHP Version: 8.0.3
 
@@ -74,7 +74,7 @@ CREATE TABLE `covidreport` (
   `reporter_unit` varchar(20) NOT NULL,
   `report_type` varchar(20) NOT NULL,
   `report_for_status` varchar(30) NOT NULL,
-  `evidence` varchar(255) NOT NULL,
+  `evidence` blob NOT NULL,
   `date` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -83,9 +83,9 @@ CREATE TABLE `covidreport` (
 --
 
 INSERT INTO `covidreport` (`report_id`, `reporter_unit`, `report_type`, `report_for_status`, `evidence`, `date`) VALUES
-(6, 'A-1-01', 'covid', 'Positive', 'evidence', '2022-05-31'),
-(9, 'A-1-01', 'covid', 'Close Contact', 'evidence', '0000-00-00'),
-(11, 'A-1-01', 'covid', 'Positive', 'evidence', '2022-08-04');
+(16, 'A-1-01', 'covid', 'Close Contact', 0x433a557365727341434552446f63756d656e747358414d5050096d70706870314537412e746d70, '2022-06-20'),
+(17, 'A-1-01', 'covid', 'Close Contact', 0x65766964656e6365, '2022-06-05'),
+(18, 'A-1-01', 'covid', 'Negative', 0x65766964656e6365, '2022-06-05');
 
 -- --------------------------------------------------------
 
@@ -134,19 +134,20 @@ CREATE TABLE `resident` (
   `profile_pic` varchar(500) NOT NULL,
   `covid_status` varchar(30) NOT NULL,
   `password` varchar(255) NOT NULL,
-  `vaccine_status` varchar(30) NOT NULL
+  `vaccine_status` varchar(30) NOT NULL,
+  `rental_status` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `resident`
 --
 
-INSERT INTO `resident` (`ic`, `name`, `dob`, `gender`, `race`, `contact`, `emergency_contact`, `email`, `check_in_date`, `profile_pic`, `covid_status`, `password`, `vaccine_status`) VALUES
-('010616-14-1303', 'Lei Zhi Guang', '2001-06-16', 'Female', 'Chinese', '0136247251', '0166030616', 'leizhiguang1@gmail.com', '2022-05-09 04:45:14', 'assets/images/profile-image.png', 'Negative', 'letmein', '1st Dose'),
-('1', 'Miss Five', '2022-08-02', 'Other', 'Malay', '0123456789', '0135462722', 'missfive@gmail.com', '2022-06-02 00:07:48', 'assets/images/profile-image.png', 'Positive', '1', '2nd Dose'),
-('2', 'Kobe Bryant', '2022-05-28', 'Male', 'Other', '011111', '1', 'kobe@lakers.com', '2022-05-28 08:48:04', 'assets/images/kobe.jpg', 'Negative', '2', '3rd Dose (Booster)'),
-('3', 'Kudou Shinyii', '2022-05-28', 'Male', 'Other', '48694869', '1', 'shinyi@conan.com', '2022-05-28 08:48:04', 'assets/images/conan.jpg', 'Negative', '3', 'Not Vaccinated At All'),
-('4', 'Zhang Ji Ke', '2022-05-28', 'Male', 'Chinese', '66666', '1', 'zhangjike@butterfly.com', '2022-05-28 08:48:04', 'assets/images/zhangjike.png', 'Close Contact', '4', '3rd Dose (Booster)');
+INSERT INTO `resident` (`ic`, `name`, `dob`, `gender`, `race`, `contact`, `emergency_contact`, `email`, `check_in_date`, `profile_pic`, `covid_status`, `password`, `vaccine_status`, `rental_status`) VALUES
+('010616-14-1303', 'Lei Zhi Guang', '2001-06-16', 'Female', 'Chinese', '0136247251', '0166030616', 'leizhiguang1@gmail.com', '2022-05-09 04:45:14', 'assets/images/profile-image.png', 'Negative', 'letmein', '1st Dose', 'renting'),
+('1', 'Miss Five', '2022-08-02', 'Other', 'Malay', '0123456789', '0135462722', 'missfive@gmail.com', '2022-06-02 00:07:48', 'assets/images/profile-image.png', 'Positive', '1', '2nd Dose', 'renting'),
+('2', 'Kobe Bryant', '2022-05-28', 'Male', 'Other', '011111', '1', 'kobe@lakers.com', '2022-05-28 08:48:04', 'assets/images/kobe.jpg', 'Negative', '2', '3rd Dose (Booster)', 'renting'),
+('3', 'Kudou Shinyii', '2022-05-28', 'Male', 'Other', '48694869', '1', 'shinyi@conan.com', '2022-05-28 08:48:04', 'assets/images/conan.jpg', 'Negative', '3', 'Not Vaccinated At All', 'request to stop'),
+('4', 'Zhang Ji Ke', '2022-05-28', 'Male', 'Chinese', '66666', '1', 'zhangjike@butterfly.com', '2022-05-28 08:48:04', 'assets/images/zhangjike.png', 'Close Contact', '4', '3rd Dose (Booster)', 'request to stop');
 
 -- --------------------------------------------------------
 
@@ -156,7 +157,6 @@ INSERT INTO `resident` (`ic`, `name`, `dob`, `gender`, `race`, `contact`, `emerg
 
 CREATE TABLE `unit` (
   `unit_no` varchar(10) NOT NULL,
-  `rental` varchar(20) NOT NULL,
   `owner_ic` varchar(20) NOT NULL,
   `car_park_id` varchar(25) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -165,27 +165,27 @@ CREATE TABLE `unit` (
 -- Dumping data for table `unit`
 --
 
-INSERT INTO `unit` (`unit_no`, `rental`, `owner_ic`, `car_park_id`) VALUES
-('A-1-01', '1000', '1', '101'),
-('A-2-02', '2000', '010616-14-1303', '202'),
-('A-3-03', '500', '2', '303'),
-('A-4-04', 'rent', '3', '404'),
-('A-5-05', 'rent', '505', '505'),
-('B-1-11', 'rent', '4', '111'),
-('B-2-12', 'rent', '6', '212'),
-('B-3-13', 'pause', '010205-07-0520', '313'),
-('B-4-14', 'rent', '010304-12-1232', '414'),
-('B-5-15', 'rent', '515', '515'),
-('C-1-21', 'rent', '5', '121'),
-('C-2-22', 'rent', '222', '222'),
-('C-3-23', 'rent', '', '323'),
-('C-4-24', 'rent', '', '424'),
-('C-5-25', 'rent', '525', '525'),
-('D-1-31', 'rent', '131', '131'),
-('D-2-32', 'rent', '', ''),
-('D-3-33', 'rent', '333', '333'),
-('D-4-34', 'rent', '434', '434'),
-('D-5-35', 'rent', '535', '535');
+INSERT INTO `unit` (`unit_no`, `owner_ic`, `car_park_id`) VALUES
+('A-1-01', '1', '101'),
+('A-2-02', '010616-14-1303', '202'),
+('A-3-03', '2', '303'),
+('A-4-04', '3', '404'),
+('A-5-05', '505', '505'),
+('B-1-11', '4', '111'),
+('B-2-12', '6', '212'),
+('B-3-13', '010205-07-0520', '313'),
+('B-4-14', '010304-12-1232', '414'),
+('B-5-15', '515', '515'),
+('C-1-21', '5', '121'),
+('C-2-22', '222', '222'),
+('C-3-23', '', '323'),
+('C-4-24', '', '424'),
+('C-5-25', '525', '525'),
+('D-1-31', '131', '131'),
+('D-2-32', '', ''),
+('D-3-33', '333', '333'),
+('D-4-34', '434', '434'),
+('D-5-35', '535', '535');
 
 -- --------------------------------------------------------
 
@@ -213,7 +213,8 @@ CREATE TABLE `visitorpass` (
 INSERT INTO `visitorpass` (`pass_id`, `unit`, `visitor_name`, `visitor_ic`, `visitor_contact`, `car_details`, `car_plate`, `start_time`, `end_time`, `visitor_num`) VALUES
 (1, 'A-1-01', 'Elon Musk', '111111-22-3333', '013-1231333', 'Perodua Axia Red', 'MUSK1234', '2022-06-04 09:00:00', '2022-06-04 13:00:00', 1),
 (2, 'A-1-01', 'Bill Gate', '1', '123', 'carr', '123', '2022-06-05 11:27:34', '2022-06-06 11:27:34', 2),
-(3, 'A-1-01', 'Steve Job', '12123', '3123', 'Honda Jazz', '123abc', '2022-06-01 11:27:34', '2022-06-01 13:27:34', 5);
+(3, 'A-1-01', 'Steve Job', '12123', '3123', 'Honda Jazz', '123abc', '2022-06-01 11:27:34', '2022-06-01 13:27:34', 5),
+(5, 'A-1-01', 'aaaa', '123', '123', 'car', '12312', '2022-06-05 17:02:00', '2022-06-05 23:57:00', 5);
 
 --
 -- Indexes for dumped tables
@@ -275,13 +276,13 @@ ALTER TABLE `announcement`
 -- AUTO_INCREMENT for table `covidreport`
 --
 ALTER TABLE `covidreport`
-  MODIFY `report_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `report_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT for table `visitorpass`
 --
 ALTER TABLE `visitorpass`
-  MODIFY `pass_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `pass_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
