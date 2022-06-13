@@ -173,7 +173,8 @@ if(isset($_SESSION['ic'])){
                                     </li>
                                     <!-- topbar profile end -->
 
-                                    <li class="nav-item dropdown mx-1">
+                                    <!-- Bell Icon -->
+                                    <!-- <li class="nav-item dropdown mx-1">
 
                                         <a title="Announcements" class="nav-link" href="#" id="notification-dropdown"
                                             role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -197,7 +198,7 @@ if(isset($_SESSION['ic'])){
                                             <li><a class="dropdown-item text-center mygreen"
                                                     href="announcement.php">View All Notifications</a></li>
                                         </ul>
-                                    </li>
+                                    </li> -->
 
                                 </ul>
                                 <a href="https://mail.google.com/mail/u/0/" target="_blank"  title="Send Email" class="mx-1 btn btn_mygreen">

@@ -1,17 +1,40 @@
 <?php 
-$pageTitle = "Manage Residents";
-include 'includes/admin-header.php';
+    $pageTitle = "Manage Residents";
+    include 'includes/admin-header.php';
 
-// Create Resident Function and insert into unit
-if(isset($_POST['create_resident'])){
-    $unit = $_POST['unit'];
-    $name = $_POST['name'];
-    $ic = $_POST['ic'];
+    // Create Resident Function and insert into unit
+    if(isset($_POST['create_resident'])){
+        $unit = $_POST['new-unit'];
+        $ic = $_POST['new-ic'];
+        $name = $_POST['new-name'];
+        $dob = $_POST['new-dob'];
+        $gender = $_POST['new-gender'];
+        $race = $_POST['new-race'];
+        $contact = $_POST['new-contact'];
+        $emergency = $_POST['new-emergency'];
+        $email = $_POST['new-email'];
+        $datetime = $_POST['new-datetime'];
+        $profilepic = "default profile picture";
+        $covidstatus = $_POST['new-covidstatus'];
+        // $password = $_POST['new-password'];
+        $password = "bonds";//set default password as bonds
+        $vaccinestatus = $_POST['new-vaccinestatus'];
+        $rentalstatus = "renting";
 
-    // INSERT INTO `resident` (`ic`, `name`, `dob`, `gender`, `race`, `contact`, `emergency_contact`, `email`, `check_in_date`, `profile_pic`, `status`, `password`, `vaccine_status`) VALUES ('5', 'Miss Five', '2022-06-02 00:07:48.000000', 'female', 'british', '0123456789', '0135462722', 'missfive@gmail.com', '2022-06-02 00:07:48.000000', 'assets/images/profile-image.png', 'status', '5', 'fully vaccinated');
-    $query = mysqli_query($con, "INSERT INTO resident (ic,name) VALUES ('$ic','$name')");
-    $query = mysqli_query($con, "UPDATE unit SET owner_ic='$ic' WHERE unit_no='$unit'");//Need to pre create the unit in order to assign the unit to resident
-}
+        // Check If The IC Exist
+        $checkIcQuery = "SELECT * FROM resident WHERE ic='$ic'";
+        $checkIcQuery_run = mysqli_query($con, $checkIcQuery);
+
+        if(mysqli_num_rows($checkIcQuery_run)>0){
+            //means ic already exist
+            $_SESSION['message'] = "An account with this IC has already exist";
+            exit(0);
+        }
+
+
+        $query = mysqli_query($con, "INSERT INTO resident VALUES ('$ic','$name','$dob','$gender','$race','$contact','$emergency','$email','$datetime','$profilepic','$covidstatus','$password','$vaccinestatus','$rentalstatus')");
+        $query = mysqli_query($con, "UPDATE unit SET owner_ic='$ic' WHERE unit_no='$unit'");//Need to pre create the unit in order to assign the unit to resident
+    }
 
 ?>
 
@@ -171,39 +194,91 @@ if(isset($_POST['create_resident'])){
                                         <form method="POST" action="admin-manageuser.php">
                                             <div class="mb-3">
                                                 <label for="unit" class="col-form-label">Unit:</label>
-                                                <input type="text" name="unit" class="form-control" id="unit" placeholder="A-10-13" >
+                                                <?php
+                                                    $dropdown = '<select name="new-unit" required>';
+                    
+                                                    $query = mysqli_query($con, "SELECT * FROM unit WHERE owner_ic=''");
+                                                    while($row = mysqli_fetch_array($query)) {
+                                                        $unit_no = $row['unit_no'];
+                                        
+                                                        $dropdown = $dropdown . "<option value='$unit_no'>$unit_no</option>";
+                                                    }
+
+                                                    echo $dropdown. "</select>";
+                                                
+                                                ?>
+                                                <!-- <input type="text" name="new-unit" class="form-control" id="unit" placeholder="A-10-13" required> -->
                                             </div>
                                             <div class="mb-3">
                                                 <label for="name" class="col-form-label">Resident Name:</label>
-                                                <input type="text" name="name" class="form-control" id="name" >
-                                            </div>
-                                            <div class="mb-3">
-                                                <label for="gender" class="col-form-label">Gender:</label>
-                                                <input type="radio" id="F" name="gender" value="F" >
-                                                <label for="F">Female</label>
-                                                <input type="radio" id="M" name="gender" value="M">
-                                                <label for="M">Male</label>
+                                                <input type="text" name="new-name" class="form-control" id="name" required placeholder="Full Name Here...">
                                             </div>
                                             <div class="mb-3">
                                                 <label for="ic" class="col-form-label">IC Number: (YYMMDD-XX-XXXX)</label>
-                                                <input type="text" class="form-control" name="ic" id="ic" placeholder="010616-14-1303">
+                                                <input type="text" class="form-control" name="new-ic" id="ic" placeholder="010616-14-1303" pattern="[0-9]{6}-[0-9]{2}-[0-9]{4}" required>
+                                            </div>
+                                            <div class="mb-3">
+                                                <label for="race" class="col-form-label">Race:</label>
+                                                <select name="new-race" id="race">
+                                                    <option value="Malay">Malay</option>    
+                                                    <option value="Chinese">Chinese</option>
+                                                    <option value="India">India</option>
+                                                    <option value="Other">Other</option>
+                                                </select>
+                                            </div>
+                                            <div class="mb-3">
+                                                <label for="dob" class="col-form-label">Date Of Birth:</label>
+                                                <input type="date" class="form-control" id="dob" name="new-dob" required>
+                                            </div>
+                                            <div class="mb-3">
+                                                <label for="gender" class="col-form-label">Gender:</label>
+                                                <input type="radio" id="M" name="new-gender" value="Male" required checked>
+                                                <label for="M">Male</label>
+                                                <input type="radio" id="F" name="new-gender" value="Female" required>
+                                                <label for="F">Female</label>
                                             </div>
                                             <div class="mb-3">
                                                 <label for="contact" class="col-form-label">Phone Number:</label>
-                                                <input type="text" class="form-control" id="contact" >
-                                            </div>
-                                                <div class="mb-3">
-                                                <label for="date-move-in" class="col-form-label">Date Move In:</label>
-                                                <input type="datetime-local" class="form-control" id="date-move-in" >
+                                                <input type="text" class="form-control" id="contact" name="new-contact" placeholder="012-3456789" required>
                                             </div>
                                             <div class="mb-3">
                                                 <label for="emergency" class="col-form-label">Emergency Phone Number: </label>
-                                                <input type="text" class="form-control" id="emergency" >
+                                                <input type="text" class="form-control" id="emergency" name="new-emergency" placeholder="012-3456789" required>
                                             </div>
                                             <div class="mb-3">
-                                                <label for="password" class="col-form-label">Password: </label>
-                                                <input type="password" class="form-control" id="password" >
+                                                <label for="email" class="col-form-label">Email Address:</label>
+                                                <input type="email" class="form-control" id="email" name="new-email" placeholder="example@mail.com" required>
                                             </div>
+                                            <div class="mb-3">
+                                                <label for="date-move-in" class="col-form-label">Date Move In:</label>
+                                                <input type="datetime-local" class="form-control" id="date-move-in" name="new-datetime" required>
+                                            </div>
+                                            <div class="mb-3">
+                                                <label for="covidstatus" class="col-form-label">Covid Status:</label>
+                                                <!-- <input type="text" class="form-control" id="covidstatus" name="new-covidstatus" required> -->
+                                                <select name="new-covidstatus" id="covidstatus">
+                                                        <option value="Negative">Negative</option>
+                                                        <option value="Close Contact">Close Contact</option>
+                                                        <option value="Positive">Positive</option>
+                                                </select>
+                                            </div>
+                                            <div class="mb-3">
+                                                <label for="vaccinestatus" class="col-form-label">Vaccine Status:</label>
+                                                <!-- select input later -->
+                                                <select name="new-vaccinestatus" id="vaccinestatus">
+                                                        <option value="Not Vaccinated At All">Not Vaccinated At All</option>
+                                                        <option value="1st Dose">1st Dose</option>
+                                                        <option value="2nd Dose">2nd Dose</option>
+                                                        <option value="3rd Dose (Booster)">3rd Dose (Booster)</option>
+                                                </select>
+                                                
+                                                <!-- <input type="text" class="form-control" id="vaccinestatus" name="new-vaccinestatus" required> -->
+                                            </div>
+                                            
+                                            <!-- <div class="mb-3">
+                                                <label for="password" class="col-form-label">Password: </label>
+                                                <input type="password" class="form-control" id="password" name="new-password" required>
+                                            </div> -->
                                             <input type="submit"  class="me-lg-3 btn btn-primary" id="submit" name="create_resident">
                                         </form>
                                     </div>

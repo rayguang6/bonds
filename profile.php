@@ -129,7 +129,6 @@ include 'includes/header.php';
           </button>
         </form>
 
-
         <div class="accomodationInformationSection" style="margin-top: 10%">
           <h3>Accomodation Information</h3>
           <hr />
