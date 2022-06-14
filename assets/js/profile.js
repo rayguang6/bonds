@@ -118,6 +118,7 @@ function edit() {
   for (var i = 0; i < allitemselect.length; i++) {
     allitemselect[i].disabled = false;
   }
+  document.getElementById("profile-ic").disabled = true; //primary key cannot been edited
   document.getElementById("editBtn").style.display = "none";
   document.getElementById("editValidationBtn").innerHTML =
     " <input type='submit' class='btn btn_mygreen w-25 mt-4' value='Confirm'/><button type='button' class='btn btn-danger w-25 mt-4' onclick='cancelEdit()' style='margin-left:3%;'>Cancel</button>";
