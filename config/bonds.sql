@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 05, 2022 at 11:58 AM
+-- Generation Time: Jun 14, 2022 at 05:38 AM
 -- Server version: 10.4.18-MariaDB
 -- PHP Version: 8.0.3
 
@@ -74,18 +74,112 @@ CREATE TABLE `covidreport` (
   `reporter_unit` varchar(20) NOT NULL,
   `report_type` varchar(20) NOT NULL,
   `report_for_status` varchar(30) NOT NULL,
-  `evidence` blob NOT NULL,
-  `date` date NOT NULL
+  `evidence` varchar(500) NOT NULL,
+  `date` date NOT NULL,
+  `active_cases` int(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `covidreport`
 --
 
-INSERT INTO `covidreport` (`report_id`, `reporter_unit`, `report_type`, `report_for_status`, `evidence`, `date`) VALUES
-(16, 'A-1-01', 'covid', 'Close Contact', 0x433a557365727341434552446f63756d656e747358414d5050096d70706870314537412e746d70, '2022-06-20'),
-(17, 'A-1-01', 'covid', 'Close Contact', 0x65766964656e6365, '2022-06-05'),
-(18, 'A-1-01', 'covid', 'Negative', 0x65766964656e6365, '2022-06-05');
+INSERT INTO `covidreport` (`report_id`, `reporter_unit`, `report_type`, `report_for_status`, `evidence`, `date`, `active_cases`) VALUES
+(101, 'B-2-02', 'covid', 'Positive', 'assets/images/pcrtest.jpg', '2022-05-01', 1),
+(102, 'C-3-03', 'covid', 'Positive', 'assets/images/pcrtest.jpg', '2022-05-02', 2),
+(103, 'D-4-04', 'covid', 'Positive', 'assets/images/pcrtest.jpg', '2022-05-02', 3),
+(105, 'A-1-01', 'covid', 'Positive', 'assets/images/pcrtest.jpg', '2022-05-02', 4),
+(106, 'B-2-02', 'covid', 'Negative', 'assets/images/pcrtest.jpg', '2022-05-03', 3),
+(107, 'C-3-03', 'covid', 'Close Contact', 'assets/images/pcrtest.jpg', '2022-05-03', 2),
+(108, 'D-4-04', 'covid', 'Negative', 'assets/images/pcrtest.jpg', '2022-05-03', 1),
+(109, 'A-1-01', 'covid', 'Close Contact', 'assets/images/pcrtest.jpg', '2022-05-04', 0),
+(110, 'B-2-02', 'covid', 'Positive', 'assets/images/pcrtest.jpg', '2022-05-04', 1),
+(111, 'C-3-03', 'covid', 'Positive', 'assets/images/pcrtest.jpg', '2022-05-05', 2),
+(112, 'D-4-04', 'covid', 'Positive', 'assets/images/pcrtest.jpg', '2022-05-05', 3),
+(113, 'A-1-01', 'covid', 'Negative', 'assets/images/pcrtest.jpg', '2022-05-05', 3),
+(114, 'D-4-04', 'covid', 'Close Contact', 'assets/images/pcrtest.jpg', '2022-05-06', 2),
+(115, 'A-1-01', 'covid', 'Positive', 'assets/images/pcrtest.jpg', '2022-05-06', 3),
+(116, 'B-2-02', 'covid', 'Close Contact', 'assets/images/pcrtest.jpg', '2022-05-06', 2),
+(117, 'C-3-03', 'covid', 'Negative', 'assets/images/pcrtest.jpg', '2022-05-07', 1),
+(118, 'D-4-04', 'covid', 'Positive', 'assets/images/pcrtest.jpg', '2022-05-07', 2),
+(119, 'A-1-01', 'covid', 'Positive', 'assets/images/pcrtest.jpg', '2022-05-07', 3),
+(120, 'B-2-02', 'covid', 'Negative', 'assets/images/pcrtest.jpg', '2022-05-08', 2),
+(121, 'C-3-03', 'covid', 'Close Contact', 'assets/images/pcrtest.jpg', '2022-05-08', 1),
+(122, 'D-4-04', 'covid', 'Positive', 'assets/images/pcrtest.jpg', '2022-05-09', 2),
+(123, 'A-1-01', 'covid', 'Negative', 'assets/images/pcrtest.jpg', '2022-05-09', 1),
+(124, 'B-2-02', 'covid', 'Positive', 'assets/images/pcrtest.jpg', '2022-05-10', 2),
+(125, 'C-3-03', 'covid', 'Positive', 'assets/images/pcrtest.jpg', '2022-05-10', 3),
+(201, 'B-2-02', 'covid', 'Positive', 'assets/images/pcrtest.jpg', '2022-05-11', 1),
+(202, 'C-3-03', 'covid', 'Positive', 'assets/images/pcrtest.jpg', '2022-05-12', 2),
+(203, 'D-4-04', 'covid', 'Positive', 'assets/images/pcrtest.jpg', '2022-05-12', 3),
+(205, 'A-1-01', 'covid', 'Positive', 'assets/images/pcrtest.jpg', '2022-05-12', 4),
+(206, 'B-2-02', 'covid', 'Negative', 'assets/images/pcrtest.jpg', '2022-05-13', 3),
+(207, 'C-3-03', 'covid', 'Close Contact', 'assets/images/pcrtest.jpg', '2022-05-13', 2),
+(208, 'D-4-04', 'covid', 'Negative', 'assets/images/pcrtest.jpg', '2022-05-13', 1),
+(209, 'A-1-01', 'covid', 'Close Contact', 'assets/images/pcrtest.jpg', '2022-05-14', 0),
+(210, 'B-2-02', 'covid', 'Positive', 'assets/images/pcrtest.jpg', '2022-05-14', 1),
+(211, 'C-3-03', 'covid', 'Positive', 'assets/images/pcrtest.jpg', '2022-05-15', 2),
+(212, 'D-4-04', 'covid', 'Positive', 'assets/images/pcrtest.jpg', '2022-05-15', 3),
+(213, 'A-1-01', 'covid', 'Negative', 'assets/images/pcrtest.jpg', '2022-05-15', 3),
+(214, 'D-4-04', 'covid', 'Close Contact', 'assets/images/pcrtest.jpg', '2022-05-16', 2),
+(215, 'A-1-01', 'covid', 'Positive', 'assets/images/pcrtest.jpg', '2022-05-16', 3),
+(216, 'B-2-02', 'covid', 'Close Contact', 'assets/images/pcrtest.jpg', '2022-05-16', 2),
+(217, 'C-3-03', 'covid', 'Negative', 'assets/images/pcrtest.jpg', '2022-05-17', 1),
+(218, 'D-4-04', 'covid', 'Positive', 'assets/images/pcrtest.jpg', '2022-05-17', 2),
+(219, 'A-1-01', 'covid', 'Positive', 'assets/images/pcrtest.jpg', '2022-05-17', 3),
+(220, 'B-2-02', 'covid', 'Negative', 'assets/images/pcrtest.jpg', '2022-05-18', 2),
+(221, 'C-3-03', 'covid', 'Close Contact', 'assets/images/pcrtest.jpg', '2022-05-18', 1),
+(222, 'D-4-04', 'covid', 'Positive', 'assets/images/pcrtest.jpg', '2022-05-19', 2),
+(223, 'A-1-01', 'covid', 'Negative', 'assets/images/pcrtest.jpg', '2022-05-19', 1),
+(224, 'B-2-02', 'covid', 'Positive', 'assets/images/pcrtest.jpg', '2022-05-20', 2),
+(225, 'C-3-03', 'covid', 'Positive', 'assets/images/pcrtest.jpg', '2022-05-20', 3),
+(301, 'B-2-02', 'covid', 'Positive', 'assets/images/pcrtest.jpg', '2022-05-21', 1),
+(302, 'C-3-03', 'covid', 'Positive', 'assets/images/pcrtest.jpg', '2022-05-22', 2),
+(303, 'D-4-04', 'covid', 'Positive', 'assets/images/pcrtest.jpg', '2022-05-22', 3),
+(305, 'A-1-01', 'covid', 'Positive', 'assets/images/pcrtest.jpg', '2022-05-22', 4),
+(306, 'B-2-02', 'covid', 'Negative', 'assets/images/pcrtest.jpg', '2022-05-23', 3),
+(307, 'C-3-03', 'covid', 'Close Contact', 'assets/images/pcrtest.jpg', '2022-05-23', 2),
+(308, 'D-4-04', 'covid', 'Negative', 'assets/images/pcrtest.jpg', '2022-05-23', 1),
+(309, 'A-1-01', 'covid', 'Close Contact', 'assets/images/pcrtest.jpg', '2022-05-24', 0),
+(310, 'B-2-02', 'covid', 'Positive', 'assets/images/pcrtest.jpg', '2022-05-24', 1),
+(311, 'C-3-03', 'covid', 'Positive', 'assets/images/pcrtest.jpg', '2022-05-25', 2),
+(312, 'D-4-04', 'covid', 'Positive', 'assets/images/pcrtest.jpg', '2022-05-25', 3),
+(313, 'A-1-01', 'covid', 'Negative', 'assets/images/pcrtest.jpg', '2022-05-25', 3),
+(314, 'D-4-04', 'covid', 'Close Contact', 'assets/images/pcrtest.jpg', '2022-05-26', 2),
+(315, 'A-1-01', 'covid', 'Positive', 'assets/images/pcrtest.jpg', '2022-05-26', 3),
+(316, 'B-2-02', 'covid', 'Close Contact', 'assets/images/pcrtest.jpg', '2022-05-26', 2),
+(317, 'C-3-03', 'covid', 'Negative', 'assets/images/pcrtest.jpg', '2022-05-27', 1),
+(318, 'D-4-04', 'covid', 'Positive', 'assets/images/pcrtest.jpg', '2022-05-27', 2),
+(319, 'A-1-01', 'covid', 'Positive', 'assets/images/pcrtest.jpg', '2022-05-27', 3),
+(320, 'B-2-02', 'covid', 'Negative', 'assets/images/pcrtest.jpg', '2022-05-28', 2),
+(321, 'C-3-03', 'covid', 'Close Contact', 'assets/images/pcrtest.jpg', '2022-05-28', 1),
+(322, 'D-4-04', 'covid', 'Positive', 'assets/images/pcrtest.jpg', '2022-05-29', 2),
+(323, 'A-1-01', 'covid', 'Negative', 'assets/images/pcrtest.jpg', '2022-05-29', 1),
+(324, 'B-2-02', 'covid', 'Positive', 'assets/images/pcrtest.jpg', '2022-05-30', 2),
+(325, 'C-3-03', 'covid', 'Positive', 'assets/images/pcrtest.jpg', '2022-05-30', 3),
+(1001, 'B-2-02', 'covid', 'Positive', 'assets/images/pcrtest.jpg', '2022-06-05', 1),
+(1002, 'C-3-03', 'covid', 'Positive', 'assets/images/pcrtest.jpg', '2022-06-05', 2),
+(1003, 'D-4-04', 'covid', 'Positive', 'assets/images/pcrtest.jpg', '2022-06-05', 3),
+(1005, 'A-1-01', 'covid', 'Positive', 'assets/images/pcrtest.jpg', '2022-06-06', 4),
+(1006, 'B-2-02', 'covid', 'Negative', 'assets/images/pcrtest.jpg', '2022-06-06', 3),
+(1007, 'C-3-03', 'covid', 'Close Contact', 'assets/images/pcrtest.jpg', '2022-06-06', 2),
+(1008, 'D-4-04', 'covid', 'Negative', 'assets/images/pcrtest.jpg', '2022-06-06', 1),
+(1009, 'A-1-01', 'covid', 'Close Contact', 'assets/images/pcrtest.jpg', '2022-06-06', 0),
+(1010, 'B-2-02', 'covid', 'Positive', 'assets/images/pcrtest.jpg', '2022-06-07', 1),
+(1011, 'C-3-03', 'covid', 'Positive', 'assets/images/pcrtest.jpg', '2022-06-07', 2),
+(1012, 'D-4-04', 'covid', 'Positive', 'assets/images/pcrtest.jpg', '2022-06-07', 3),
+(1013, 'A-1-01', 'covid', 'Negative', 'assets/images/pcrtest.jpg', '2022-06-08', 3),
+(1014, 'D-4-04', 'covid', 'Close Contact', 'assets/images/pcrtest.jpg', '2022-06-08', 2),
+(1015, 'A-1-01', 'covid', 'Positive', 'assets/images/pcrtest.jpg', '2022-06-09', 3),
+(1016, 'B-2-02', 'covid', 'Close Contact', 'assets/images/pcrtest.jpg', '2022-06-09', 2),
+(1017, 'C-3-03', 'covid', 'Negative', 'assets/images/pcrtest.jpg', '2022-06-09', 1),
+(1018, 'D-4-04', 'covid', 'Positive', 'assets/images/pcrtest.jpg', '2022-06-09', 2),
+(1019, 'A-1-01', 'covid', 'Positive', 'assets/images/pcrtest.jpg', '2022-06-10', 3),
+(1020, 'B-2-02', 'covid', 'Negative', 'assets/images/pcrtest.jpg', '2022-06-10', 2),
+(1021, 'C-3-03', 'covid', 'Close Contact', 'assets/images/pcrtest.jpg', '2022-06-11', 1),
+(1022, 'D-4-04', 'covid', 'Positive', 'assets/images/pcrtest.jpg', '2022-06-11', 2),
+(1023, 'A-1-01', 'covid', 'Negative', 'assets/images/pcrtest.jpg', '2022-06-12', 1),
+(1024, 'B-2-02', 'covid', 'Positive', 'assets/images/pcrtest.jpg', '2022-06-12', 2),
+(1025, 'C-3-03', 'covid', 'Positive', 'assets/images/pcrtest.jpg', '2022-06-12', 3);
 
 -- --------------------------------------------------------
 
@@ -143,11 +237,11 @@ CREATE TABLE `resident` (
 --
 
 INSERT INTO `resident` (`ic`, `name`, `dob`, `gender`, `race`, `contact`, `emergency_contact`, `email`, `check_in_date`, `profile_pic`, `covid_status`, `password`, `vaccine_status`, `rental_status`) VALUES
-('010616-14-1303', 'Lei Zhi Guang', '2001-06-16', 'Female', 'Chinese', '0136247251', '0166030616', 'leizhiguang1@gmail.com', '2022-05-09 04:45:14', 'assets/images/profile-image.png', 'Negative', 'letmein', '1st Dose', 'renting'),
-('1', 'Miss Five', '2022-08-02', 'Other', 'Malay', '0123456789', '0135462722', 'missfive@gmail.com', '2022-06-02 00:07:48', 'assets/images/profile-image.png', 'Positive', '1', '2nd Dose', 'renting'),
-('2', 'Kobe Bryant', '2022-05-28', 'Male', 'Other', '011111', '1', 'kobe@lakers.com', '2022-05-28 08:48:04', 'assets/images/kobe.jpg', 'Negative', '2', '3rd Dose (Booster)', 'renting'),
-('3', 'Kudou Shinyii', '2022-05-28', 'Male', 'Other', '48694869', '1', 'shinyi@conan.com', '2022-05-28 08:48:04', 'assets/images/conan.jpg', 'Negative', '3', 'Not Vaccinated At All', 'request to stop'),
-('4', 'Zhang Ji Ke', '2022-05-28', 'Male', 'Chinese', '66666', '1', 'zhangjike@butterfly.com', '2022-05-28 08:48:04', 'assets/images/zhangjike.png', 'Close Contact', '4', '3rd Dose (Booster)', 'request to stop');
+('010616-14-1303', 'Lei Zhi Guanggg', '2001-06-16', 'Female', 'Chinese', '0136247251', '0166030616', 'leizhiguang1@gmail.com', '2022-05-09 04:45:14', 'assets/images/profile-image.png', 'Negative', 'password', '1st Dose', 'request to stop'),
+('1', 'Miss Five', '2022-08-02', 'Other', 'Malay', '0123456789', '0135462722', 'missfive@gmail.com', '2022-06-02 00:07:48', 'assets/images/meColloseum.png', 'Negative', '1', '2nd Dose', 'renting'),
+('2', 'Kobe Bryant', '2022-05-28', 'Male', 'Other', '011111', '1', 'kobe@lakers.com', '2022-05-28 08:48:04', 'assets/images/kobe.jpg', 'Positive', '2', '3rd Dose (Booster)', 'renting'),
+('3', 'Kudou Shinyii', '2022-05-28', 'Male', 'Other', '48694869', '1', 'shinyi@conan.com', '2022-05-28 08:48:04', 'assets/images/conan.jpg', 'Positive', '3', 'Not Vaccinated At All', 'request to stop'),
+('4', 'Zhang Ji Ke', '2022-05-28', 'Male', 'Chinese', '66666', '1', 'zhangjike@butterfly.com', '2022-05-28 08:48:04', 'assets/images/zhangjike.png', 'Positive', '4', '3rd Dose (Booster)', 'request to stop');
 
 -- --------------------------------------------------------
 
@@ -168,23 +262,23 @@ CREATE TABLE `unit` (
 INSERT INTO `unit` (`unit_no`, `owner_ic`, `car_park_id`) VALUES
 ('A-1-01', '1', '101'),
 ('A-2-02', '010616-14-1303', '202'),
-('A-3-03', '2', '303'),
-('A-4-04', '3', '404'),
+('A-3-03', '', '303'),
+('A-4-04', '', '404'),
 ('A-5-05', '505', '505'),
-('B-1-11', '4', '111'),
+('B-2-02', '2', '111'),
 ('B-2-12', '6', '212'),
 ('B-3-13', '010205-07-0520', '313'),
 ('B-4-14', '010304-12-1232', '414'),
 ('B-5-15', '515', '515'),
 ('C-1-21', '5', '121'),
 ('C-2-22', '222', '222'),
-('C-3-23', '', '323'),
+('C-3-03', '3', '323'),
 ('C-4-24', '', '424'),
 ('C-5-25', '525', '525'),
 ('D-1-31', '131', '131'),
-('D-2-32', '', ''),
+('D-2-32', '', '436'),
 ('D-3-33', '333', '333'),
-('D-4-34', '434', '434'),
+('D-4-04', '4', '434'),
 ('D-5-35', '535', '535');
 
 -- --------------------------------------------------------
@@ -276,7 +370,7 @@ ALTER TABLE `announcement`
 -- AUTO_INCREMENT for table `covidreport`
 --
 ALTER TABLE `covidreport`
-  MODIFY `report_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `report_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1026;
 
 --
 -- AUTO_INCREMENT for table `visitorpass`
