@@ -79,37 +79,11 @@ include 'includes/header.php';?>
            $endtime = $_POST['visitor-endtime'];
            $number = $_POST['visitor-num'];
 
-           $query = mysqli_query($con, "INSERT INTO visitorpass VALUES ('','$unit','$name','$ic','$phone','$car','$carplate','$starttime','$endtime','$number')");
+           $query = mysqli_query($con, "INSERT INTO visitorpass (unit, visitor_name, visitor_ic, visitor_contact, car_details, car_plate, start_time, end_time, visitor_num)
+           VALUES ('$unit','$name','$ic','$phone','$car','$carplate','$starttime','$endtime','$number')"); 
         }
 
         ?>
-
-        <!-- Temp Button trigger modal -->
-        <!-- TODO Put back into the form later -->
-        <!-- <button type="" class="btn btn_mygreen" data-bs-toggle="modal"
-            data-bs-target="#visitor-modal">Submit Application</button> -->
-
-        <!-- Confirmation Popup Modal -->
-        <div class="modal fade" id="visitor-modal" tabindex="-1"
-            aria-labelledby="visitor-modalLabel" aria-hidden="false">
-            <div class="modal-dialog modal-dialog-centered">
-                <div class="modal-content">
-                    <div class="modal-body d-flex flex-column align-items-center">
-                        <div class="mx-auto">
-                            <img src="https://cdn.dribbble.com/users/251873/screenshots/9289747/13540-sign-for-success-alert.gif"
-                                alt="success-image" width="200">
-                        </div>
-                        <div class="alert" role="alert">
-                            Submitted Successfully! Report will be generated!
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn_mygreen"
-                            data-bs-dismiss="modal">OK</button>
-                    </div>
-                </div>
-            </div>
-        </div>
 
     </div>
 
