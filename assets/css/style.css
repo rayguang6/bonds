@@ -104,6 +104,7 @@ h6 {
   /* width: 50px !important;
   height: 50px !important; */
   object-fit: cover !important;
+
 }
 
 /********************
@@ -260,6 +261,58 @@ Main Content Container End
 /*************************
 Profile START  
 ***************************/
+
+.profileSideSmall{
+  position: fixed;
+  height: 80%;
+  right: 0%;
+  bottom: 0;
+  border-style: groove;
+  width: 20%;
+  overflow-y: scroll;
+  background-color: white;
+  border-top-left-radius: 25px;
+}
+
+  .profile_container h3{
+    font-size: 2vw;
+  }
+
+
+
+@media (max-width: 600px) {
+  .profileImgSide{
+    display: none;
+  
+  }
+}
+
+@media (max-width: 830px) {
+  /* .riskStatus i{
+    display: none;
+  } */
+
+  /* .vacinnationStatus i{
+    display: none;
+
+  } */
+}
+
+@media (max-width: 1200px) {
+  
+}
+@media (min-width: 1500px) {
+  
+}
+
+.verificationDiv{
+  margin: auto;
+}
+
+.dangerZone h3{
+  color: red;
+}
+
 #confirmationDiv {
   position: fixed;
   top: 50vh;
@@ -339,23 +392,41 @@ Profile START
   display: none;
   z-index: 999;
 }
+
+#editBtn{
+  max-width: 100px;
+}
+
+#chgPassBtn{
+max-width: 200px;
+}
+
+#deleteBtn{
+  max-width: 200px;
+}
 .profileImgSide {
   position: fixed;
+  height: 80%;
   right: 0%;
-  height: 100%;
+  bottom: 0;
   border-style: groove;
   width: 20%;
-  overflow-y: auto;
+  overflow-y: scroll;
   background-color: white;
   border-top-left-radius: 25px;
 }
+
 .profileImgSide .details {
   text-align: center;
+}
+
+.profileImgSide .details h2{
+  font-size: 2vw;
 }
 .profileImgSide .riskStatus {
   background-color: #0d6efd;
   display: flex;
-  width: 90%;
+  width: 100%;
   min-height: 80px;
   margin: auto;
   margin-bottom: 3%;
@@ -364,18 +435,18 @@ Profile START
   border-radius: 10px;
 }
 .profileImgSide .riskStatus i {
-  font-size: 60px;
+  font-size: 3vw;
   margin: auto;
   margin-left: 5%;
   margin-right: 5%;
 }
 .profileImgSide .riskStatus h3 {
   color: #f3f8ff;
-  font-size: 20px;
+  font-size: 1.5vw;
   font-weight: bold;
 }
 .profileImgSide .riskStatus h5 {
-  font-size: 15px;
+  font-size: 1vw;
   color: #f3f8ff;
   font-weight: lighter;
   margin-bottom: 4px;
@@ -384,36 +455,41 @@ Profile START
 .profileImgSide .vacinnationStatus {
   background-color: yellow;
   min-height: 80px;
-  width: 90%;
+  width: 100%;
   display: flex;
   margin: auto;
   margin-bottom: 10%;
+  
   border-style: solid yellow;
   border-radius: 10px;
 }
 .profileImgSide .vacinnationStatus i {
-  font-size: 50px;
-  margin-top: 5%;
+  font-size: 3vw ;
+  margin: auto;
   margin-left: 5%;
-  margin-right: 8%;
+  margin-right: 5%;
 }
 .profileImgSide .vacinnationStatus h5 {
   color: black;
-  font-size: 15px;
+  font-size: 1vw;
   font-weight: lighter;
   margin-bottom: 4px;
   margin-top: 10px;
 }
 .profileImgSide .vacinnationStatus h3 {
   color: black;
-  font-size: 20px;
+  font-size: 1.5vw;
   font-weight: bold;
 }
 .profileImgSide #profile-image {
-  max-width: 200px;
+  /* max-width: 200px;
   max-height: 200px;
   min-height: 200px;
-  min-width: 200px;
+  min-width: 200px; */
+  max-width: 80%;
+  aspect-ratio: 1/1;
+  /* height: auto; */
+  width: auto\9; 
   place-items: center;
   border: double 15px #46cdcf;
   border-radius: 50%;
@@ -422,12 +498,12 @@ Profile START
 
 .profileImgSide .image {
   text-align: center;
+  /* width: 20%;
+  height: 20%; */
 }
 .editImage {
   width: 30px;
   height: 30px;
-  position: absolute;
-  top: 180px;
 }
 .modals {
   position: absolute;
@@ -503,9 +579,11 @@ Profile START
   cursor: pointer;
 }
 .minimizeProfileSide img {
-  width: 19%;
-  height: 19%;
+  aspect-ratio: 1/1;
+  width: 20%;
   border-radius: 50%;
+  margin-top: 10px;
+  margin-bottom: 10px;
 }
 .minimizeProfileSide h6 {
   margin: auto;
@@ -514,15 +592,7 @@ Profile START
   text-align: center;
   cursor: pointer;
 }
-.profileSideBar {
-  right: 0%;
-  height: 100%;
-  border-style: groove;
-  width: 20%;
-  overflow-y: auto;
-  background-color: white;
-  border-top-left-radius: 25px;
-}
+
 .profile_container .form-control:disabled,
 select:disabled option {
   background: white;
@@ -535,6 +605,8 @@ select:disabled option {
   border: none;
   margin-left: -12px;
 }
+
+
 
 /*************************
 Profile END  
@@ -642,3 +714,5 @@ Chat Start
 /* *****************
 Chat End
 **************** */
+
+
