@@ -1,11 +1,17 @@
 <?php
 ob_start(); //Turns on output buffering 
-session_start();
+if(!isset($_SESSION)) { 
+	session_start(); 
+} 
 
 $timezone = date_default_timezone_set("Asia/Kuala_Lumpur");
 
-// (hostname, username, password, databaseName)
-$con = mysqli_connect("localhost", "root", "root", "bonds"); //Connection variable
+function connection(){
+	// (hostname, username, password, databaseName)
+	return mysqli_connect("localhost", "root", "", "bonds"); 
+}
+
+$con = connection();//Connection variable
 
 if(mysqli_connect_errno()) 
 {
