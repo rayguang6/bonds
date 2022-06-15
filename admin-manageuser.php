@@ -33,7 +33,7 @@
         $emergency = $_POST['new-emergency'];
         $email = $_POST['new-email'];
         $datetime = date("Y-m-d H:i:s");
-        $profilepic = "default profile picture";
+        $profilepic = 'assets/images/defaultProPic.jpg';
         $covidstatus = $_POST['new-covidstatus'];
         // $password = $_POST['new-password'];
         $password = "bonds";//set default password as bonds
