@@ -100,10 +100,18 @@
         foreach ($weekArr as $day) {
             $covid_report = mysqli_fetch_array(mysqli_query(connection(), 
             "SELECT active_cases FROM covidreport WHERE report_id in (SELECT MAX(report_id) FROM covidreport WHERE date = '".$day."')"));
-            array_push($activeArr, $covid_report[0]);
+            if($covid_report == null){
+                array_push($activeArr, 0);
+            }else{
+                array_push($activeArr, $covid_report[0]);
+            }
             $covid_report2 = mysqli_fetch_array(mysqli_query(connection(), 
             "SELECT COUNT(report_id) FROM covidreport WHERE report_for_status='Positive' AND date = '".$day."'"));
-            array_push($newArr, $covid_report2[0]);
+            if($covid_report2 == null){
+                array_push($newArr, 0);
+            }else{
+                array_push($newArr, $covid_report2[0]);
+            }
         }
         return array($activeArr,$newArr);
     }
@@ -130,7 +138,11 @@
         foreach ($monthArr as $day) {
             $covid_report = mysqli_fetch_array(mysqli_query(connection(), 
             "SELECT COUNT(report_id) FROM covidreport WHERE report_for_status='Positive' AND date = '".$day."'"));
-            array_push($monthlyReport, $covid_report[0]);
+            if($covid_report == null){
+                array_push($monthlyReport, 0);
+            }else{
+                array_push($monthlyReport, $covid_report[0]);
+            }
         }
         return $monthlyReport;
     }
