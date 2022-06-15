@@ -1,3 +1,5 @@
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
 <?php
 
 if(isset($_POST['login_button'])) {
@@ -22,13 +24,15 @@ if(isset($_POST['login_button'])) {
 			header("Location: admin-dashboard.php"):header("Location: dashboard.php");
 		exit();
 	}
-	else {
-		// array_push($error_array, "Email or password was incorrect<br>");
-        // echo "<scipt>alert('Wrong Password or IC')</scipt>";
-        $message = "Wrong Password";
-        echo "<script>alert('$message');</script>";
+	else {?>
+		<script type="text/javascript"> 
+			$(function() {
+				$('#alert-modal').modal('show')
+			});
+		</script>
+
+<?php		   
 	}
 
 }
-
 ?>
