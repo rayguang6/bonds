@@ -286,7 +286,7 @@
                                                     <select name="new-race" id="race" class="form-select" required>
                                                         <option value="Malay">Malay</option>    
                                                         <option value="Chinese">Chinese</option>
-                                                        <option value="India">India</option>
+                                                        <option value="Indian">Indian</option>
                                                         <option value="Other">Other</option>
                                                     </select>
                                                 </div>
@@ -397,7 +397,7 @@
                                                     <select name="editResident-race" id="editResident-race" class="form-select" required>
                                                         <option value="Malay">Malay</option>    
                                                         <option value="Chinese">Chinese</option>
-                                                        <option value="India">India</option>
+                                                        <option value="Indian">Indian</option>
                                                         <option value="Other">Other</option>
                                                     </select>
                                                 </div>
