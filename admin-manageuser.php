@@ -200,7 +200,7 @@
 
                         <div class="col-12 mycontainer mt-4">
                             <div class="title d-flex align-items-center mb-2">
-                                <h2>Upcoming Visitors</h2>
+                                <h2>Registered Visitor</h2>
                             </div>
                             <!-- Visitor Table Start -->
                             <table class="table table-hover" id="VisitorTable">
