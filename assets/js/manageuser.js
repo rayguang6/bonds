@@ -131,9 +131,9 @@ $(document).on('click', '.editResidentBtn', function () {
                 
                 document.getElementById("editResident-dob").value = res.data.dob;
                 document.getElementById("editResident-gender").value = res.data.gender;
+                document.getElementById("editResident-race").value = res.data.race;
                 $('#editResident-ic').val(res.data.ic);
                 $('#editResident-name').val(res.data.name);
-                $("#editResident-race select").val(res.data.race);
                 $('#editResident-contact').val(res.data.contact);
                 $('#editResident-emergencycontact').val(res.data.emergency_contact);
                 $('#editResident-email').val(res.data.email);
@@ -143,6 +143,7 @@ $(document).on('click', '.editResidentBtn', function () {
                 $('#editResident-password').val(res.data.password);
                 document.getElementById("editResident-vaccinestatus").value = res.data.vaccine_status;
                 
+                document.getElementById("editResident-ic").readOnly = true;
                 document.getElementById("editResident-ic").readOnly = true;
                 document.getElementById("editResident-checkindate").readOnly = true;
                 $('#editResidentModal').modal('show');
