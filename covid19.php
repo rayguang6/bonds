@@ -110,13 +110,13 @@
         </div>
 
         <!-- For Trggering The Update Vaccine  -->
-        <!-- <div class="mycontainer mt-4">
+        <div class="mycontainer mt-4">
             <h3>Update Vaccine</h3>
             <h6>Your Current Vaccine Status: <br> <?=$Resident->getVaccineStatus()?></h6>
             <p>Update your vaccine status here</p>
             <button class="btn btn_mygreen" data-bs-toggle="modal"
                 data-bs-target="#vaccineModal">Update</button>
-        </div> -->
+        </div>
     </div>
 
     <!-- Covid Report Popup Modal -->
@@ -164,6 +164,46 @@
         </div>
     </div>
     <!-- End Covid Modal -->
+
+    <!-- Vaccine Report Popup Modal -->
+    <div class="modal fade" id="vaccineModal" tabindex="-1" aria-labelledby="vaccineModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="covidModalLabel">Update Your Vaccine Info</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                        aria-label="Cancel"></button>
+                </div>
+                <form class="modal-body" method="POST" id="updateVaccineForm" enctype="multipart/form-data">
+
+                    <h6 class="mt-4">Unit</h6>
+                    <input type="text" class="form-control" name="covid-unit" value='<?=$loggedInUnit?>' readonly>
+
+                    <h6 class="mt-4">Updating to:</h6>
+                    <select class="form-select" name="covid-report_for" required>
+                        <option value="Not Vaccinated At All">Not Vaccinated At All</option>
+                        <option value="1st Dose">1st Dose</option>
+                        <option value="2nd Dose">2nd Dose</option>
+                        <option value="3rd Dose (Booster)">3rd Dose (Booster)</option>
+                    </select>
+                    
+                    <p>(Your Current Vaccine Status: <?=$Resident->getVaccineStatus()?>)</p>
+
+                    <h6 class="mt-4">Image Evidence</h6>
+                    <input class="form-control form-control-sm" type="file" name="covid-evidence" required>
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary"
+                            data-bs-dismiss="modal">Cancel</button>
+                        <button type="submit" class="btn btn_mygreen" id="submit" name="vaccine_report_btn" value="Report">Submit Report</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <!-- End Vaccine Report Modal -->
+
     <!-- Thank you Pop-up Modal Start-->
     <div class="modal fade" id="myModal" tabindex="-1" aria-labelledby="exampleModalLabel"
         aria-hidden="true">

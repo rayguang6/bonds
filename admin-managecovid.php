@@ -281,7 +281,7 @@ function getDateNow($offset,$amount,$format){
                                         </div>
                                         <div class='align-items-center mb-2'>
                                             <p class="my-0 me-2">Evidence:</p>
-                                            <img src="#" alt="Evidence Image" id="report-evidence">
+                                            <img src="#" alt="Evidence Image" id="report-evidence" class="w-50">
                                         </div>
                                         <div class='d-flex align-items-center mb-2'>
                                             

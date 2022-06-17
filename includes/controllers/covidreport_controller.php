@@ -16,24 +16,19 @@
 
         //submit only if it is a different status
         if($report_for!=$Resident->getCovidStatus()){
-            if(($Resident->getCovidStatus() == "Negative" or $Resident->getCovidStatus() == "Close Contact")
-            and $report_for=="Positive"){
-                $active_cases +=1;
-            }else if(($report_for == "Negative" or $report_for == "Close Contact")
-            and $Resident->getCovidStatus()=="Positive"){
-                $active_cases -=1;
-            }
-            $query = "UPDATE resident SET covid_status='$report_for' WHERE ic='$LoggedInIC'";
-            $query_run = mysqli_query($con, $query);
-            // $date = $_POST['datetime'];
+            // if(($Resident->getCovidStatus() == "Negative" or $Resident->getCovidStatus() == "Close Contact")
+            // and $report_for=="Positive"){
+            //     $active_cases +=1;
+            // }else if(($report_for == "Negative" or $report_for == "Close Contact")
+            // and $Resident->getCovidStatus()=="Positive"){
+            //     $active_cases -=1;
+            // }
+            // $query = "UPDATE resident SET covid_status='$report_for' WHERE ic='$LoggedInIC'";
+            // $query_run = mysqli_query($con, $query);
+            
             $date = date("Y-m-d");
             
-            // $myimage = addslashes(file_get_contents($_FILES['covid-evidence']['name']));
-            $imageName = ($_FILES['covid-evidence']['name']);
-            $imageData = file_get_contents($_FILES['covid-evidence']['tmp_name']);
-            $imageType = ($_FILES['covid-evidence']['type']);
-            // $file_ Type - pathinfo($target_file_path, $PATHINFO EXTENSION);
-            $query = mysqli_query($con, "INSERT INTO covidreport VALUES ('$report_id','$covid_unit','covid','$report_for','empty','$date','$active_cases')");
+            $query = mysqli_query($con, "INSERT INTO covidreport VALUES ('$report_id','$covid_unit','covid','$report_for','evidence','$date')");
 
             // Upload Image
             $target_Dir = "assets/images/";
@@ -45,6 +40,31 @@
                 mysqli_query($con,$sql);
             } 
         }
+    }
+
+
+    /*************************/
+    // Submit Update Vaccine
+    if(isset($_POST['vaccine_report_btn'])) {
+
+        $covid_unit = $_POST['covid-unit'];
+        $report_for = $_POST['covid-report_for'];
+        $date = date("Y-m-d");
+
+        // Upload Image
+        $target_Dir = "assets/images/";
+        $filename = basename($_FILES["covid-evidence"]["name"]);
+        $target_file_path=$target_Dir.$filename;
+
+        if(move_uploaded_file($_FILES[ "covid-evidence"]["tmp_name"], $target_file_path)){
+            $query = mysqli_query($con, "INSERT INTO covidreport VALUES ('','$covid_unit','vaccine','$report_for','$target_file_path','$date')");
+            
+            echo "<script type='text/javascript'>
+                $(document).ready(function(){
+                $('#myModal').modal('show');
+                });
+                </script>";
+        } 
     }
 
     //get Date for dynamic current Date and time in webpage
@@ -86,7 +106,11 @@
         // return $covid_report[0];
         $covid_report = mysqli_fetch_array(mysqli_query(connection(), 
         "SELECT * FROM covidcases WHERE date='$today'"));
-        return $covid_report['new'];
+        $newCases=0;
+        if($covid_report != null){
+            $newCases = $covid_report['new'];
+        }
+        return $newCases;
     }
     
     function createWeekArray(){
