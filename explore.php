@@ -287,6 +287,9 @@ function getBadge($status){
                     </div>
                 </div>
             </div>
+        </div>
+    </div>
+</div>
 
                                         
 
