@@ -26,8 +26,7 @@ include 'includes/admin-header.php';
                                     <i class="bi bi-shield-fill-plus fs-2 text-primary"></i>
                                     <h2 class="ms-2">
                                         <?php
-                                        //how to find ah????
-                                        $query = mysqli_query($con, "SELECT active_cases FROM covidreport WHERE report_id in (SELECT MAX(report_id) FROM covidreport)");
+                                        $data_query = mysqli_query($con, "SELECT * FROM `resident` WHERE covid_status = 'Positive'");
                                         $covid_num = mysqli_num_rows($data_query);
                                         ?>
                                         <?= $covid_num ?>
