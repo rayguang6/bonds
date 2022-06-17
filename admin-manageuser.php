@@ -1,7 +1,7 @@
 <?php 
     $pageTitle = "Manage Residents";
     include 'includes/admin-header.php';
-
+    //Alert Message
     function echoToast($message){
         echo '<div aria-live="polite" aria-atomic="true" class="position-relative" style="z-index: 100;">
         <div class="toast-container position-fixed bottom-0 end-0 m-3">
@@ -47,12 +47,9 @@
         if(mysqli_num_rows($checkIcQuery_run)>0){
             //means ic already exist 
             echoToast("IC cannot be used as already found in database.");
-            // $_SESSION['message'] = "An account with this IC has already exist";
-            // exit(0);
         }else{
             $query = mysqli_query($con, "INSERT INTO resident VALUES ('$ic','$name','$dob','$gender','$race','$contact','$emergency','$email','$datetime','$profilepic','$covidstatus','$password','$vaccinestatus','$rentalstatus')");
             $query = mysqli_query($con, "UPDATE unit SET owner_ic='$ic' WHERE unit_no='$unit'");//Need to pre create the unit in order to assign the unit to resident
-            // header("Location:admin-manageuser.php");
             echoToast("New resident added.");
         }
     }
