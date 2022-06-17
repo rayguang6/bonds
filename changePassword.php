@@ -1,6 +1,7 @@
 <?php 
     include "profile.php";
     $newPassword = $_POST["profile-newPassword"];
+    $newPassword = md5($newPassword);
     if($newPassword != $Resident->getPassword()){
         $sql = "UPDATE resident SET password='".$newPassword."' WHERE ic='".$Resident->getIc()."'";
         mysqli_query($con,$sql);

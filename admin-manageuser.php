@@ -35,8 +35,7 @@
         $datetime = date("Y-m-d H:i:s");
         $profilepic = 'assets/images/defaultProPic.jpg';
         $covidstatus = $_POST['new-covidstatus'];
-        // $password = $_POST['new-password'];
-        $password = "bonds";//set default password as bonds
+        $password = md5('bonds');//set default password as bonds
         $vaccinestatus = $_POST['new-vaccinestatus'];
         $rentalstatus = "renting";
 
@@ -66,7 +65,7 @@
         $rental_status = $_POST['editResident-status'];
         $check_in_date = $_POST['editResident-checkindate'];
         $profile_pic = $_POST['editResident-profile_pic'];
-        $password = $_POST['editResident-password'];
+        $password = md5($_POST['editResident-password']);
         $vaccine_status = $_POST['editResident-vaccinestatus'];
     
         $query = "UPDATE resident SET name='$name', contact='$contact' , dob='$dob', gender='$gender', race='$race', contact='$contact',

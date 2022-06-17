@@ -21,6 +21,7 @@ if($check_login_query == 1) {
 
     //updating temporary password
     $temp = generate_password(8);
+    $temp= md5($temp);
     $sql = "UPDATE $login_type SET password='$temp' WHERE ic='$ic'";
     mysqli_query($con,$sql); ?>
     <script type="text/javascript">

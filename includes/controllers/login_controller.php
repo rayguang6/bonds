@@ -7,7 +7,7 @@ if(isset($_POST['login_button'])) {
     $login_type = $_POST['login_type']; //'resident' or 'admin'
     
     $ic = $_POST['login_ic']; //Get ic
-	$password = $_POST['login_password']; //Get password
+	$password = md5($_POST['login_password']); //Get password
 	// $password = md5($_POST['login_password']); //to encrypt the password
 
     // based on the option selected in the select box, decide which database to search for to fetch username and password
