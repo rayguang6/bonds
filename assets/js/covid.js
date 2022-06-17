@@ -115,7 +115,7 @@ function monthlyCases(month_arr, monthlyReport){
         data: {
             labels: month_arr,
             datasets: [{
-                label: 'No. of Cases Reported',
+                label: 'No. of Cases',
                 data: monthlyReport,
                 backgroundColor: [
                     'rgba(255, 99, 132, 0.2)',

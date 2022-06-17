@@ -28,7 +28,7 @@ if(isset($_SESSION['ic'])){
     <!-- D3JS --><script src="https://d3js.org/d3.v4.js"></script>
     <!-- Datatable CSS CDN --><link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css">
     <!-- Datatable JS CDN --><script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
-    <!-- Sweet Alert CDN --><script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <!-- Sweet Alert CDN --><script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <!-- ChartJS CDN --><script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link rel="stylesheet" href="assets/css/admin.css">
     <title>Admin | <?php echo $pageTitle; ?></title>

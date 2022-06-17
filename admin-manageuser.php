@@ -404,7 +404,7 @@
                                                 <div class="col">
                                                     <label for="status" class="col-form-label">Rental Status</label>
                                                     <select name="editResident-status" id="editResident-status" class="form-select" required>
-                                                        <option value="renting">Renting</option>    
+                                                        <option value="renting">Renting</option>
                                                         <option value="request to stop">Request to stop</option>
                                                     </select>
                                                 </div>

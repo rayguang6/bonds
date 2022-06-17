@@ -52,10 +52,10 @@
                 </div>
                 <div class="row">
                         <div class="ps-4 container mt-2 w-50 mx-auto">
-                            <h6 id="Block A" class="alert">Block A: <span>10</span></h6>
-                            <h6 id="Block B" class="alert">Block B: <span>5</span></h6>
+                            <h6 id="Block A" class="alert">Block A: <span>0</span></h6>
+                            <h6 id="Block B" class="alert">Block B: <span>0</span></h6>
                             <h6 id="Block C" class="alert">Block C: <span>0</span></h6>
-                            <h6 id="Block D" class="alert">Block D: <span>1</span></h6>
+                            <h6 id="Block D" class="alert">Block D: <span>0</span></h6>
                             <div class="d-flex justify-content-around">
                                 <span class="alert alert-success p-1 mx-1">(0)</span>
                                 <span class="alert alert-primary p-1">(1-4)</span>
