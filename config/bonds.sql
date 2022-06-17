@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 17, 2022 at 06:34 PM
+-- Generation Time: Jun 17, 2022 at 07:05 PM
 -- Server version: 10.4.18-MariaDB
 -- PHP Version: 8.0.3
 
@@ -39,9 +39,9 @@ CREATE TABLE `admin` (
 --
 
 INSERT INTO `admin` (`ic`, `password`, `name`, `email`) VALUES
-('111', '111', 'Mr.admin', 'maychin0205@gmail.com'),
-('123', 'admin', 'Mr.admin', 'maychin0205@gmail.com'),
-('123123', '123123', 'Mr.admin', 'maychin0205@gmail.com');
+('111', '698d51a19d8a121ce581499d7b701668', 'Mr.admin', 'maychin0205@gmail.com'),
+('123', '21232f297a57a5a743894a0e4a801fc3', 'Mr.admin', 'maychin0205@gmail.com'),
+('123123', '4297f44b13955235245b2497399d7a93', 'Mr.admin', 'maychin0205@gmail.com');
 
 -- --------------------------------------------------------
 
@@ -319,17 +319,18 @@ CREATE TABLE `resident` (
 --
 
 INSERT INTO `resident` (`ic`, `name`, `dob`, `gender`, `race`, `contact`, `emergency_contact`, `email`, `check_in_date`, `profile_pic`, `covid_status`, `password`, `vaccine_status`, `rental_status`) VALUES
-('010101-01-0111', 'Mikasa ', '2001-01-01', 'Other', 'Other', '011-1100110', '011-0011001', 'mikasa@aot.com', '2022-06-15 17:43:28', 'assets/images/defaultProPic.jpg', 'Negative', 'bonds', 'Not Vaccinated At All', 'renting'),
-('010606-06-0899', 'Fatimah Moo', '2001-06-06', 'Female', 'Malay', '011-6600889', '011-9988006', 'fatimah@hotmail.com', '2022-06-15 17:44:29', 'assets/images/defaultProPic.jpg', 'Negative', 'bonds', '3rd Dose (Booster)', 'renting'),
-('010616-14-1303', 'Lei Zhi Guang', '2001-06-16', 'Male', 'Chinese', '013-6247251', '016-6030616', 'leizhiguang1@gmail.com', '2022-05-09 04:45:14', 'assets/images/profile-image.png', 'Negative', 'password', '1st Dose', 'request to stop'),
-('120501-02-0521', 'Kudou Shinyii', '2012-05-01', 'Male', 'Malay', '012-0501001', '012-0501002', 'shinyi@conan.com', '2022-05-28 08:48:04', 'assets/images/conan.jpg', 'Positive', 'bonds', 'Not Vaccinated At All', 'renting'),
-('2', 'Kobe Bryant', '2022-05-28', 'Male', 'Malay', '011-1111111', '012-2222222', 'kobe@lakers.com', '2022-05-28 08:48:04', 'assets/images/kobe.jpg', 'Positive', '2', '1st Dose', 'renting'),
-('4', 'Zhang Ji Ke', '2022-05-28', 'Male', 'Chinese', '880-3219019', '880-9273012', 'zhangjike@butterfly.com', '2022-05-28 08:48:04', 'assets/images/zhangjike.png', 'Positive', '4', '3rd Dose (Booster)', 'request to stop'),
-('681225-09-8263', 'Ms Five', '1968-12-25', 'Female', 'Indian', '012-2502111', '012-1125021', 'samantha@outlook.com', '2022-06-16 22:39:03', 'assets/images/defaultProPic.jpg', 'Negative', 'bonds', '3rd Dose (Booster)', 'renting'),
-('710701-09-0911', 'Mei Thong Thong', '1971-07-01', 'Female', 'Chinese', '017-7911001', '017-0017799', 'meithong99@outlook.com', '2022-06-15 18:08:32', 'assets/images/defaultProPic.jpg', 'Negative', 'bonds', '3rd Dose (Booster)', 'renting'),
-('780912-02-1923', 'Levis Garingee', '1978-09-12', 'Male', 'Malay', '017-8091212', '017-0892121', 'levis@yahoo.com', '2022-06-15 17:51:33', 'assets/images/defaultProPic.jpg', 'Negative', 'bonds', '2nd Dose', 'request to stop'),
-('951203-08-1234', 'Donki Don', '1995-12-03', 'Female', 'Indian', '019-1203551', '019-3021115', 'donki@dondon.com', '2022-06-15 17:52:51', 'assets/images/defaultProPic.jpg', 'Negative', 'bonds', '2nd Dose', 'renting'),
-('991212-12-1222', 'Chris Muulai', '1999-12-12', 'Female', 'Chinese', '012-9912211', '019-2219112', 'chris@gmail.com', '2022-06-15 18:09:32', 'assets/images/defaultProPic.jpg', 'Negative', 'bonds', '1st Dose', 'renting');
+('010101-01-0111', 'Mikasa ', '2001-01-01', 'Other', 'Other', '011-1100110', '011-0011001', 'mikasa@aot.com', '2022-06-15 17:43:28', 'assets/images/defaultProPic.jpg', 'Negative', 'ee63700a92c5b6a61802e226ed995c05', 'Not Vaccinated At All', 'renting'),
+('010606-06-0899', 'Fatimah Moo', '2001-06-06', 'Female', 'Malay', '011-6600889', '011-9988006', 'fatimah@hotmail.com', '2022-06-15 17:44:29', 'assets/images/defaultProPic.jpg', 'Negative', 'ee63700a92c5b6a61802e226ed995c05', '3rd Dose (Booster)', 'renting'),
+('010616-14-1303', 'Lei Zhi Guang', '2001-06-16', 'Male', 'Chinese', '013-6247251', '016-6030616', 'leizhiguang1@gmail.com', '2022-05-09 04:45:14', 'assets/images/profile-image.png', 'Negative', 'ee63700a92c5b6a61802e226ed995c05', '1st Dose', 'request to stop'),
+('1', 'Kudou Shinyii', '2012-05-01', 'Male', 'Malay', '012-0501001', '012-0501002', 'shinyi@conan.com', '2022-05-28 08:48:04', 'assets/images/conan.jpg', 'Positive', 'c4ca4238a0b923820dcc509a6f75849b', 'Not Vaccinated At All', 'renting'),
+('11', 'Ms Water', '2022-06-29', 'Female', 'Chinese', '01256789', '1241241524', 'water@earth.com', '2022-06-18 00:37:59', 'assets/images/cb08f82a6b15af05987d3452020e8ab4.jpg', 'Negative', '9460370bb0ca1c98a779b1bcc6861c2c', '2nd Dose', 'renting'),
+('2', 'Kobe Bryant', '2022-05-28', 'Male', 'Malay', '011-1111111', '012-2222222', 'kobe@lakers.com', '2022-05-28 08:48:04', 'assets/images/kobe.jpg', 'Positive', 'c81e728d9d4c2f636f067f89cc14862c', '1st Dose', 'renting'),
+('4', 'Zhang Ji Ke', '2022-05-28', 'Male', 'Chinese', '880-3219019', '880-9273012', 'zhangjike@butterfly.com', '2022-05-28 08:48:04', 'assets/images/zhangjike.png', 'Positive', 'a87ff679a2f3e71d9181a67b7542122c', '3rd Dose (Booster)', 'request to stop'),
+('681225-09-8263', 'Ms Five', '1968-12-25', 'Female', 'Indian', '012-2502111', '012-1125021', 'samantha@outlook.com', '2022-06-16 22:39:03', 'assets/images/defaultProPic.jpg', 'Negative', 'ee63700a92c5b6a61802e226ed995c05', '3rd Dose (Booster)', 'renting'),
+('710701-09-0911', 'Mei Thong Thong', '1971-07-01', 'Female', 'Chinese', '017-7911001', '017-0017799', 'meithong99@outlook.com', '2022-06-15 18:08:32', 'assets/images/defaultProPic.jpg', 'Negative', 'ee63700a92c5b6a61802e226ed995c05', '3rd Dose (Booster)', 'renting'),
+('780912-02-1923', 'Levis Garingee', '1978-09-12', 'Male', 'Malay', '017-8091212', '017-0892121', 'levis@yahoo.com', '2022-06-15 17:51:33', 'assets/images/defaultProPic.jpg', 'Negative', 'ee63700a92c5b6a61802e226ed995c05', '2nd Dose', 'request to stop'),
+('951203-08-1234', 'Donki Don', '1995-12-03', 'Female', 'Indian', '019-1203551', '019-3021115', 'donki@dondon.com', '2022-06-15 17:52:51', 'assets/images/defaultProPic.jpg', 'Negative', 'ee63700a92c5b6a61802e226ed995c05', '2nd Dose', 'renting'),
+('991212-12-1222', 'Chris Muulai', '1999-12-12', 'Female', 'Chinese', '012-9912211', '019-2219112', 'chris@gmail.com', '2022-06-15 18:09:32', 'assets/images/defaultProPic.jpg', 'Negative', 'ee63700a92c5b6a61802e226ed995c05', '1st Dose', 'renting');
 
 -- --------------------------------------------------------
 
@@ -414,7 +415,7 @@ CREATE TABLE `unit` (
 --
 
 INSERT INTO `unit` (`unit_no`, `owner_ic`, `car_park_id`) VALUES
-('A-1-01', '', '101'),
+('A-1-01', '11', '101'),
 ('A-2-02', '010616-14-1303', '202'),
 ('A-3-03', '010101-01-0111', '303'),
 ('A-4-04', '681225-09-8263', '404'),
@@ -426,7 +427,7 @@ INSERT INTO `unit` (`unit_no`, `owner_ic`, `car_park_id`) VALUES
 ('B-5-15', '', '515'),
 ('C-1-21', '', '121'),
 ('C-2-22', '780912-02-1923', '222'),
-('C-3-03', '3', '323'),
+('C-3-03', '1', '323'),
 ('C-4-24', '010606-06-0899', '424'),
 ('C-5-25', '', '525'),
 ('D-1-31', '', '131'),
