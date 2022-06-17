@@ -144,8 +144,8 @@ $(document).on('click', '.editResidentBtn', function () {
                 document.getElementById("editResident-vaccinestatus").value = res.data.vaccine_status;
                 
                 document.getElementById("editResident-ic").readOnly = true;
-                document.getElementById("editResident-ic").readOnly = true;
                 document.getElementById("editResident-checkindate").readOnly = true;
+                document.getElementById("editResident-password").readOnly = true;
                 $('#editResidentModal').modal('show');
             }
 
