@@ -2,7 +2,7 @@
     if(isset($_POST['covid_report_btn'])) {
         //Get new report ID
         $report_id = (int)mysqli_fetch_array(mysqli_query($con, "SELECT MAX(report_id) FROM covidreport"))[0];
-        $active_cases = (int)mysqli_fetch_array(mysqli_query($con, "SELECT active_cases FROM covidreport WHERE report_id='$report_id'"))[0];
+        // $active_cases = (int)mysqli_fetch_array(mysqli_query($con, "SELECT active_cases FROM covidreport WHERE report_id='$report_id'"))[0];
         $report_id += 1;
         echo "<script type='text/javascript'>
         $(document).ready(function(){
@@ -32,7 +32,7 @@
 
             // Upload Image
             $target_Dir = "assets/images/";
-            $filename = basename($_FILES["covid-evidence"]["name"]);
+            $filename = str_replace(" ", "_", basename($_FILES["covid-evidence"]["name"]));
             $target_file_path=$target_Dir.$filename;
 
             if(move_uploaded_file($_FILES[ "covid-evidence"]["tmp_name"], $target_file_path)){
@@ -46,18 +46,21 @@
     /*************************/
     // Submit Update Vaccine
     if(isset($_POST['vaccine_report_btn'])) {
+        $report_id = (int)mysqli_fetch_array(mysqli_query($con, "SELECT MAX(report_id) FROM covidreport"))[0];
+        $report_id += 1;
 
-        $covid_unit = $_POST['covid-unit'];
-        $report_for = $_POST['covid-report_for'];
+        $vaccine_unit = $_POST['vaccine-unit'];
+        $report_for = $_POST['vaccine-report_for'];
         $date = date("Y-m-d");
 
         // Upload Image
         $target_Dir = "assets/images/";
-        $filename = basename($_FILES["covid-evidence"]["name"]);
+        $filename = basename($_FILES["vaccine-evidence"]["name"]);
+        $filename = str_replace(" ", "_", basename($_FILES["vaccine-evidence"]["name"]));
         $target_file_path=$target_Dir.$filename;
 
-        if(move_uploaded_file($_FILES[ "covid-evidence"]["tmp_name"], $target_file_path)){
-            $query = mysqli_query($con, "INSERT INTO covidreport VALUES ('','$covid_unit','vaccine','$report_for','$target_file_path','$date')");
+        if(move_uploaded_file($_FILES[ "vaccine-evidence"]["tmp_name"], $target_file_path)){
+            $query = mysqli_query($con, "INSERT INTO covidreport VALUES ('$report_id','$vaccine_unit','vaccine','$report_for','$target_file_path','$date')");
             
             echo "<script type='text/javascript'>
                 $(document).ready(function(){
