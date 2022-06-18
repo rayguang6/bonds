@@ -20,14 +20,15 @@ if($check_login_query == 1) {
     $name = $row['name'];
 
     //updating temporary password
-    $temp = generate_password(8);
-    $temp= md5($temp);
+    $oriPass = generate_password(8);
+    $temp= md5($oriPass);
     $sql = "UPDATE $login_type SET password='$temp' WHERE ic='$ic'";
     mysqli_query($con,$sql); ?>
     <script type="text/javascript">
         var recipientMail = '<?php echo $email ?>';
         var recipientName = '<?php echo $name ?>';
         var tempPass = '<?php echo $temp ?>';
+        var oriPass = '<?php echo $oriPass ?>';
         var data = {
             service_id: 'bondsService',
             template_id: 'verificationEmail',
@@ -35,7 +36,7 @@ if($check_login_query == 1) {
             template_params: {
                 'from_name':"bonds",
                 'to_name': recipientName,
-                'message': 'Your new temporary password is been reset to :'+tempPass,
+                'message': 'Your new temporary password is been reset to :'+oriPass,
                 'email': recipientMail
             }
         };
