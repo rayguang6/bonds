@@ -1,4 +1,6 @@
 <?php 
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
     $pageTitle = "Covid 19";
     include 'includes/header.php';
     include 'includes/controllers/covidreport_controller.php';?>
@@ -171,17 +173,17 @@
         <div class="modal-dialog modal-dialog-scrollable">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="covidModalLabel">Update Your Vaccine Info</h5>
+                    <h5 class="modal-title" id="vaccineModalLabel">Update Your Vaccine Info</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal"
                         aria-label="Cancel"></button>
                 </div>
                 <form class="modal-body" method="POST" id="updateVaccineForm" enctype="multipart/form-data">
 
                     <h6 class="mt-4">Unit</h6>
-                    <input type="text" class="form-control" name="covid-unit" value='<?=$loggedInUnit?>' readonly>
+                    <input type="text" class="form-control" name="vaccine-unit" value='<?=$loggedInUnit?>' readonly>
 
                     <h6 class="mt-4">Updating to:</h6>
-                    <select class="form-select" name="covid-report_for" required>
+                    <select class="form-select" name="vaccine-report_for" required>
                         <option value="Not Vaccinated At All">Not Vaccinated At All</option>
                         <option value="1st Dose">1st Dose</option>
                         <option value="2nd Dose">2nd Dose</option>
@@ -191,7 +193,7 @@
                     <p>(Your Current Vaccine Status: <?=$Resident->getVaccineStatus()?>)</p>
 
                     <h6 class="mt-4">Image Evidence</h6>
-                    <input class="form-control form-control-sm" type="file" name="covid-evidence" required>
+                    <input class="form-control form-control-sm" type="file" name="vaccine-evidence" required>
 
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary"
