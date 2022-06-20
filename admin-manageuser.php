@@ -66,11 +66,10 @@
         $check_in_date = $_POST['editResident-checkindate'];
         $profile_pic = $_POST['editResident-profile_pic'];
         $password = md5($_POST['editResident-password']);
-        $vaccine_status = $_POST['editResident-vaccinestatus'];
-    
-        $query = "UPDATE resident SET name='$name', contact='$contact' , dob='$dob', gender='$gender', race='$race', contact='$contact',
+        
+	$query = "UPDATE resident SET name='$name', contact='$contact' , dob='$dob', gender='$gender', race='$race', contact='$contact',
         emergency_contact='$emergency_contact', email='$email', rental_status='$rental_status', check_in_date='$check_in_date', 
-        profile_pic='$profile_pic', password='$password', vaccine_status='$vaccine_status'
+        profile_pic='$profile_pic', password='$password'
                     WHERE ic='$ic'";
         $query_run = mysqli_query($con, $query);
     
