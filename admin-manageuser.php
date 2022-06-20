@@ -105,10 +105,10 @@
 
     </div>
     <!-- Resident Table Start -->
-    <table class="table table-hover" id="ResidentTable">
+    <table class="display" id="ResidentTable">
         <thead>
             <tr>
-                <th scope="col">Unit Number</th>
+                <th scope="col">Unit</th>
                 <th scope="col">Host Name</th>
                 <th scope="col">Gender</th>
                 <th scope="col">IC Number</th>
@@ -156,10 +156,10 @@
         <h2>Stop Rental Requests</h2>
     </div>
     <!-- Request Table Start -->
-    <table class="table table-hover" id="RequestTable">
+    <table class="display" id="RequestTable">
         <thead>
             <tr>
-                <th scope="col">Unit Number</th>
+                <th scope="col">Unit</th>
                 <th scope="col">Host Name</th>
                 <th scope="col">Contact Number</th>
                 <th scope="col">Action</th>
@@ -198,7 +198,7 @@
         <input type="button" class="btn btn-primary ms-auto" id="showUpcoming" value="Show Upcoming"/>
     </div>
     <!-- Visitor Table Start -->
-    <table class="table table-hover" id="VisitorTable">
+    <table class="display" id="VisitorTable">
         <thead>
             <tr>
                 <th scope="col">Date</th>
