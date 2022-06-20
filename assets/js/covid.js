@@ -1,6 +1,6 @@
 // ChartJS for resident covid 19
 
-// Create yesterday data
+// Create Today's data
 function currentCases(covid_report){
     var block_report = [];
     var block_colour = [];
@@ -11,7 +11,7 @@ function currentCases(covid_report){
     for(var i=0; i<block_report.length; i++){
         var block = document.getElementById(blocks[i]);
             block.textContent = blocks[i] + ": " + block_report[i];
-        if(block_report[i]> 10){
+        if(block_report[i]>=10){
             block.classList.add("alert-danger");
             block_colour.push("255, 99, 132");
         }else if(block_report[i]>=5 && block_report[i]<=9){
@@ -26,7 +26,7 @@ function currentCases(covid_report){
         }
     }
 
-    // Daily Chart
+    // Pie Chart
     const dailyCovidActiveData = {
         labels: [
         'Block A',
@@ -68,10 +68,11 @@ function currentCases(covid_report){
     }
     });
 }
-// Weekly Graph
+// Weekly Bar Graph
 function weeklyCases(week_arr, weekly_report){
-    var new_cases = weekly_report[1]
     var active_cases = weekly_report[0];
+    var new_cases = weekly_report[1]
+    var recovered_cases = weekly_report[2];
     const barChartCtx = document.getElementById('weeklyCovidGraph').getContext('2d');
     const barChartChart = new Chart(barChartCtx, {
     type: 'bar',
@@ -79,17 +80,27 @@ function weeklyCases(week_arr, weekly_report){
         labels: week_arr,
         datasets: [
             {
-                label: 'New Cases',
-                data: new_cases,
-                backgroundColor: 'rgba(255, 99, 132, 0.2)',
-                borderColor:'rgba(255, 99, 132, 1)',
+                label: 'Recovered Cases',
+                data: recovered_cases,
+                backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                borderColor:'rgba(75, 192, 192, 1)',
+                stack: 'Stack 0',
                 borderWidth: 1
             },
             {
                 label: 'Active Cases',
                 data: active_cases,
-                backgroundColor: 'rgba(54, 162, 235, .2)',
-                borderColor:'rgba(54, 162, 235, 1)',
+                backgroundColor: 'rgba(255, 206, 86, 0.2)',
+                borderColor:'rgba(255, 206, 86, 1)',
+                stack: 'Stack 1',
+                borderWidth: 1
+            },
+            {
+                label: 'New Cases',
+                data: new_cases,
+                backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                borderColor:'rgba(255, 99, 132, 1)',
+                stack: 'Stack 1',
                 borderWidth: 1
             }
         ]
@@ -107,7 +118,7 @@ function weeklyCases(week_arr, weekly_report){
     }
     });
 }
-// Monthly Cases
+// Monthly Bar Graph
 function monthlyCases(month_arr, monthlyReport){
     const monthlyCasesChart = document.getElementById('monthlyActiveCovidGraph').getContext('2d');
     const monthlyChart = new Chart(monthlyCasesChart, {
