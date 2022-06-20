@@ -5,7 +5,7 @@ include 'includes/header.php';?>
     <div class="col p-0 m-0">
         <div class="col-12 col-lg-8 mycontainer mx-auto">
             <h2>Hi, 
-                <span>Guang!</span> 
+                <span> <?php echo $Resident->getName() ?></span> 
             Welcome to Bonds App </h2>
             <p class="text-muted m-0">Get in touch with us!</p>
         </div>
@@ -33,14 +33,9 @@ include 'includes/header.php';?>
                     }
                 }
             ?>
-
-            <!-- Container To Get Announcements -->
-            <!-- <div id="announcement_container"></div> -->
         </div>
         
     </div>
 
-    <!-- This file only JS -->
-    <script src="assets/js/announcement.js"></script>
 <?php include 'includes/footer.php';?>
                     
