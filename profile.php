@@ -1,4 +1,5 @@
 <?php
+
 $pageTitle = "Profile";
 include 'includes/header.php';
 ?>
@@ -140,11 +141,11 @@ include 'includes/header.php';
           <h3>Change Password</h3>
           <hr />
           <div class="row">
-            <div class="col">
+            <div class="col" style="display: none;">
               <label for="profile-password" class="form-label">Current Password</label>
               <div class="row">
                 <div class="col">
-                  <input type="password" class="form-control" value=<?= "'" . $Resident->getPassword() . "'"; ?> id="profile-password" name="profile-password" required disabled />
+                  <input type="password" class="form-control"  value=<?= "'" . $Resident->getPassword() . "'"; ?> id="profile-password" name="profile-password" required disabled />
                 </div>
                 <div class="col" style="margin-top:10px;">
                   <i class="bi bi-eye-slash" id="toggleOriginalPassword"></i>
@@ -156,7 +157,7 @@ include 'includes/header.php';
                 <label for="profile-newPassword" class="form-label">New Password</label>
                 <div class="row">
                   <div class="col">
-                    <input type="password" class="form-control" value="" placeholder="New Password Here" id="profile-newPassword" name="profile-newPassword" required oninput="checkPassword()" />
+                    <input type="password" class="form-control" value="" placeholder="New Password Here" id="profile-newPassword" name="profile-newPassword" required />
                   </div>
                   <div class="col" style="margin-top:10px;">
                     <i class="bi bi-eye-slash" id="toggleNewPassword"></i>
@@ -281,29 +282,28 @@ include 'includes/header.php';
 <!-- Pop-up Modal End-->
 
 <!-- This file only JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
 <script type="text/javascript">
 var email = "<?= $Resident->getEmail() ?>"; 
 var name ="<?= $Resident->getName()  ?>"
 $("#profile-newPassword").on('keyup',function(){
+  console.log("lol")
   let currentPass=document.getElementById("profile-newPassword").value
-  // let currentPass = md5(currentPass)
+
   let oriPass = document.getElementById("profile-password").value
-  if(oriPass==currentPass){
+  var hash = CryptoJS.SHA1("bonds");
+  var encryptedCurrentPass = CryptoJS.MD5(currentPass)
+  if(oriPass==encryptedCurrentPass){
     document.getElementById("samePassword").innerHTML="New password cannot same with previous password"
     document.getElementById("chgPassBtn").disabled=true;
     document.getElementById("chgPassBtn").className="btn btn-secondary w-25 mt-4";
-    
   }
   else{
     document.getElementById("samePassword").innerHTML=""
     document.getElementById("chgPassBtn").disabled=false;
-    document.getElementById("chgPassBtn").className="btn btn-warning w-25 mt-4";
-
-
+    document.getElementById("chgPassBtn").className="btn btn-warning w-25 mt-4"; 
   }
 })
-
-
 
 </script>
 <script src="assets/js/profile.js">

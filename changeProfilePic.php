@@ -1,7 +1,7 @@
 <?php 
     include 'includes/header.php';
     $target_Dir="assets/images/";
-    $filename=basename($_FILES["newProfilePic"]["name"]);
+    $filename = str_replace(" ", "_", basename($_FILES["newProfilePic"]["name"])); //to allow upload image with space in filename
     $target_file_path=$target_Dir.$filename;
     // $file_Type = pathinfo($target_file_path,$PATHINFO_EXTENSION);
 

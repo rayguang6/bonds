@@ -22,55 +22,10 @@ function buildTable(tableID) {
         }
     })
 }
-
-//BS Button to put inside Sweet Confirm
-const swalWithBootstrapButtons = Swal.mixin({
-    customClass: {
-      confirmButton: 'btn btn-primary mx-1',
-      cancelButton: 'btn btn-danger mx-1'
-    },
-    buttonsStyling: false
-})
-
-//trigger sweet Alert
-async function sweetConfirmation(){
-    await swalWithBootstrapButtons.fire({
-      title: 'Are you sure to delete this data?',
-      text: "You might not be able to revert this!",
-      icon: 'warning',
-      showCancelButton: true,
-      confirmButtonText: 'Yes, delete it!',
-      cancelButtonText: 'No, cancel!',
-      reverseButtons: true
-    }).then((result) => {
-      if (result.isConfirmed) {
-          swalWithBootstrapButtons.fire(
-              'Deleted!',
-              'The Data will be deleted.',
-              'success'
-        )
-        return true
-    } else if (
-        /* Read more about handling dismissals below */
-        result.dismiss === Swal.DismissReason.cancel
-      ) {
-        swalWithBootstrapButtons.fire(
-          'Cancelled',
-          'No Action is Performed :)',
-          'error'
-        )
-        return false
-      }
-      return false
-    })
-}
-
-
-
 // ########################################
         // After Change To PHP
 
-// Delete Resident Function
+/* Delete resident function */
 $(document).on('click', '.deleteResidentBtn', async function (e) {//when clicked delete button
     e.preventDefault();
 
@@ -99,7 +54,6 @@ $(document).on('click', '.deleteResidentBtn', async function (e) {//when clicked
                             </div>
                             <div class="toast-body">
                                 ${res.message}
-                            <button class="btn text-decoration-underline text-muted" onclick="alert('Undo Clicked')">UNDO</button>
                             </div>
                         </div>
                     `
@@ -113,9 +67,8 @@ $(document).on('click', '.deleteResidentBtn', async function (e) {//when clicked
         });
     }
 });
-// Delete Function Ends
 
-// When Edit Button Clicked
+/* Edit resident function to fill in the fields*/
 $(document).on('click', '.editResidentBtn', function () {
     var resident_id = $(this).val();
     $.ajax({
@@ -140,16 +93,62 @@ $(document).on('click', '.editResidentBtn', function () {
                 $('#editResident-status').val(res.data.rental_status);
                 $('#editResident-checkindate').val(res.data.check_in_date);
                 $('#editResident-profile_pic').val(res.data.profile_pic);
-                $('#editResident-password').val(res.data.password);
-                document.getElementById("editResident-vaccinestatus").value = res.data.vaccine_status;
                 
                 document.getElementById("editResident-ic").readOnly = true;
                 document.getElementById("editResident-checkindate").readOnly = true;
-                document.getElementById("editResident-password").readOnly = true;
                 $('#editResidentModal').modal('show');
             }
-
         }
     });
+});
 
+/* Visitor table showing data function */
+Number.prototype.padLeft = function(base,chr){
+    var  len = (String(base || 10).length - String(this).length)+1;
+    return len > 0? new Array(len).join(chr || '0')+this : this;
+}
+
+$(document).on('click', '#showUpcoming', function () {
+    console.log("show upcoming");
+    // Declare variables
+    var table, tr, td, i;
+    var d = new Date,
+    today = [d.getFullYear(),
+        (d.getMonth()+1).padLeft(),
+        d.getDate().padLeft()].join('-') +' ' +
+       [d.getHours().padLeft(),
+        d.getMinutes().padLeft(),
+        d.getSeconds().padLeft()].join(':');
+    table = document.getElementById("VisitorTableBody");
+    tr = table.getElementsByTagName("tr");
+  
+    // Loop through all table rows, and hide those who don't match the search query
+    for (i = 0; i < tr.length; i++) {
+    
+      td = tr[i].getElementsByTagName("td")[0].innerHTML;
+      console.log(td);
+      console.log(today);
+      if (td) {
+        if (td > today) {
+          tr[i].style.display = "";
+        } else {
+          tr[i].style.display = "none";
+        }
+      }
+    }
+    document.getElementById('showUpcoming').id = 'cancelFilter';
+    document.getElementById('cancelFilter').value = 'Show All';
+});
+
+$(document).on('click', '#cancelFilter', function () {
+    // Declare variables
+    var table, tr, i;
+    table = document.getElementById("VisitorTableBody");
+    tr = table.getElementsByTagName("tr");
+    // Loop through all table rows, cancel .display="none"
+    for (i = 0; i < tr.length; i++) {
+        tr[i].style.display = "";
+    }
+    document.getElementById('cancelFilter').id = 'showUpcoming';
+    document.getElementById('showUpcoming').value= 'Show Upcoming';
 });
