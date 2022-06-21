@@ -2,7 +2,7 @@
     // Submit Covid Report
     if(isset($_POST['covid_report_btn'])) {
         //Get new report ID
-        $report_id = (int)mysqli_fetch_array(mysqli_query($con, "SELECT MAX(report_id) FROM covidreport"))[0];
+        $report_id = (int)mysqli_fetch_array(mysqli_query($con, "SELECT MAX(report_id) FROM report"))[0];
         $report_id += 1;
 
         // Method To Submit Form
@@ -12,14 +12,14 @@
         //submit only if it is a different status
         if($report_for!=$Resident->getCovidStatus()){
             $date = date("Y-m-d");
-            $query = mysqli_query($con, "INSERT INTO covidreport VALUES ('$report_id','$covid_unit','covid','$report_for','evidence','$date')");
+            $query = mysqli_query($con, "INSERT INTO report VALUES ('$report_id','$covid_unit','covid','$report_for','evidence','$date')");
 
             // Upload Image
             $target_Dir = "assets/images/";
             $filename = str_replace(" ", "_", basename($_FILES["covid-evidence"]["name"]));
             $target_file_path=$target_Dir.$filename;
             if(move_uploaded_file($_FILES[ "covid-evidence"]["tmp_name"], $target_file_path)){
-                $sql = "UPDATE covidreport SET evidence='". $target_file_path."' WHERE report_id='".$report_id."'";
+                $sql = "UPDATE report SET evidence='". $target_file_path."' WHERE report_id='".$report_id."'";
                 mysqli_query($con,$sql);
             } 
             //Thank you modal
@@ -33,7 +33,7 @@
 
     // Submit Update Vaccine
     if(isset($_POST['vaccine_report_btn'])) {
-        $report_id = (int)mysqli_fetch_array(mysqli_query($con, "SELECT MAX(report_id) FROM covidreport"))[0];
+        $report_id = (int)mysqli_fetch_array(mysqli_query($con, "SELECT MAX(report_id) FROM report"))[0];
         $report_id += 1;
 
         $vaccine_unit = $_POST['vaccine-unit'];
@@ -47,7 +47,7 @@
         $target_file_path=$target_Dir.$filename;
 
         if(move_uploaded_file($_FILES[ "vaccine-evidence"]["tmp_name"], $target_file_path)){
-            $query = mysqli_query($con, "INSERT INTO covidreport VALUES ('$report_id','$vaccine_unit','vaccine','$report_for','$target_file_path','$date')");
+            $query = mysqli_query($con, "INSERT INTO report VALUES ('$report_id','$vaccine_unit','vaccine','$report_for','$target_file_path','$date')");
             //Thank you modal
             echo "<script type='text/javascript'>
                 $(document).ready(function(){
