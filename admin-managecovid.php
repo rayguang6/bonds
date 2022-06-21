@@ -379,7 +379,7 @@ function getDateNow($offset,$amount,$format){
                         </div>
 
                         <!-- covid status chartJS -->
-                        <div class="mycontainer mt-4">
+                        <!-- <div class="mycontainer mt-4">
                             <div class="row d-flex align-items-center">
                                 <h1 class="text-center">Covid Cases</h1>
                                 <ul class="nav nav-tabs d-flex align-items-start" id="exploreTab" role="tablist">
@@ -400,15 +400,12 @@ function getDateNow($offset,$amount,$format){
                                 </ul>
                                 <div class="tab-content" id="myTabContent">
 
-                                    <!-- First Tab Start-->
                                     <div class="tab-pane fade show active" id="inside-tab-content" role="tabpanel"
                                         aria-labelledby="inside-tab">
                                         <h2>Weekly Cases</h2>
                                         <canvas id="myChart" class=" w-75 mx-auto"></canvas>
                                     </div>
-                                    <!-- First Tab End -->
 
-                                    <!-- Second Tab Start -->
                                     <div class="tab-pane fade" id="outside-tab-content" role="tabpanel"
                                         aria-labelledby="outside-tab">
                                         <div>
@@ -416,12 +413,11 @@ function getDateNow($offset,$amount,$format){
                                             <canvas id="monthlyCasesChart" class="w-75 mx-auto"></canvas>
                                         </div>
                                     </div>
-                                    <!-- Second Tab End -->
                                 </div>
 
 
                             </div>
-                        </div>
+                        </div> -->
 
 
                         <!-- History Container-->
