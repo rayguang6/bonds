@@ -1,6 +1,7 @@
 <?php 
 $pageTitle = "Manage Covid";
 include 'includes/admin-header.php';
+include 'includes/controllers/covidreport_controller.php';
 
 function echoToast($message){
     echo '<div aria-live="polite" aria-atomic="true" class="position-relative" style="z-index: 100;">
@@ -33,9 +34,16 @@ if(isset($_POST['updateCovidButton'])){
                     WHERE ic='$ic'";
     $query_run = mysqli_query($con, $query);
 
-        /***********UPDATE THE CASES TABLE*************/
-        //if  (-) -> (+)
-        updateCase($current_covid_status, $covid_status);
+    /***********UPDATE THE CASES TABLE*************/
+    updateCase($current_covid_status, $covid_status);
+
+    if($query_run) { 
+        echoToast("Updated Status");
+    }else{ 
+        echoToast("Updated Fail");
+    }
+
+
 }
 
 if(isset($_POST['updateReportButton'])){
@@ -53,11 +61,11 @@ if(isset($_POST['updateReportButton'])){
     updateCase($current_covid_status, $covid_status);
     
         if($query_run) { 
-            echo "<script>alert('Updated status successfully.')</script>";
+            echoToast("Status Updated Successfully");
             //delete report
             $deleteQuery = mysqli_query($con,"DELETE FROM covidreport WHERE report_id=$report_id"); 
         }else{ 
-            echo"<script>alert('Fail to update.')</script>";
+            echoToast("Updated Fail");
         }
     
 }
@@ -138,12 +146,6 @@ function getYesterdayActive(){
     return $query[0];
 }
 
-//get Date for dynamic current Date and time in webpage
-function getDateNow($offset,$amount,$format){
-    $Date = date("d-M-Y");
-    return trim(date($format, strtotime($Date.$offset."".$amount."")), "'");
-
-}
 ?>
 
                         <div class="col-12 mycontainer">
@@ -179,12 +181,6 @@ function getDateNow($offset,$amount,$format){
                                                         <td><?= $resident['covid_status']//get badge ?></td>
                                                         <td><?= $resident['vaccine_status'] ?></td>
                                                         <td>
-                                                            <!-- <button type="button" value="" class="btn px-0 updateVaccineBtn" title="Update Vaccine" >
-                                                                <i class="fa-solid fa-syringe text-primary fs-4"></i>
-                                                            </button>
-                                                            <button type="button" value="" class="btn px-0 updateCovidBtn" title="Update Covid">
-                                                                <i class="fa-solid fa-virus-covid text-danger fs-4"></i>
-                                                            </button> -->
                                                             <button type="button" class="btn btn-primary editCovidBtn" value="<?=$resident['ic'];?>">Edit</button>
                                                         </td>
                                                     </tr>
@@ -198,7 +194,6 @@ function getDateNow($offset,$amount,$format){
                             </div>
 
                         </div>
-
 
                         <!--Global Covid Modal -->
                         <div class="modal fade" id="CovidModal" tabindex="-1" aria-labelledby="updateCovidModalLabel"
@@ -223,11 +218,11 @@ function getDateNow($offset,$amount,$format){
                                     <div class="modal-body">
                                         <div class='d-flex align-items-center mb-2'>
                                             <p class="my-0 me-2" >Current Covid Status: </p>
-                                            <input name="current-covid" id="covid-covidstatus" type="text" readonly>
+                                            <input name="current-covid" id="covid-covidstatus" class="form-control" type="text" readonly>
                                         </div>
                                         <div class='d-flex align-items-center mb-2'>
                                             <p class="my-0 me-2" >Current Vaccine Status: </p>
-                                            <input name="current-vaccine" id="covid-vaccinestatus" type="text" readonly>
+                                            <input name="current-vaccine" id="covid-vaccinestatus" class="form-control" type="text" readonly>
                                         </div>
 
                                             <input type="hidden" name="covid-ic" id="covid-ic">
@@ -274,6 +269,14 @@ function getDateNow($offset,$amount,$format){
                                             <p class="my-0 me-2">Name: </p><span id="report-name"></span>
                                         </div>
                                         <div class='d-flex align-items-center mb-2'>
+                                            <p class="my-0 me-2">Current Covid Status: </p>
+                                            <input type="text" name="report-current-covid" class="form-control" id="report-covidstatus" readonly>
+                                        </div>
+                                        <div class='d-flex align-items-center mb-2'>
+                                            <p class="my-0 me-2" >Current Vaccine Status: </p>
+                                            <input type="text" name="report-current-vaccine" class="form-control" id="report-vaccinestatus" readonly>
+                                        </div>
+                                        <div class='d-flex align-items-center mb-2'>
                                             <p class="my-0 me-2">Report Type: </p><span id="report-type"></span>
                                         </div>
                                         <div class='d-flex align-items-center mb-2'>
@@ -285,14 +288,6 @@ function getDateNow($offset,$amount,$format){
                                         </div>
                                         <div class='d-flex align-items-center mb-2'>
                                             
-                                        </div>
-                                        <div class='d-flex align-items-center mb-2'>
-                                            <p class="my-0 me-2">Current Covid Status: </p>
-                                            <input type="text" name="report-current-covid" id="report-covidstatus" readonly>
-                                        </div>
-                                        <div class='d-flex align-items-center mb-2'>
-                                            <p class="my-0 me-2" >Current Vaccine Status: </p>
-                                            <input type="text" name="report-current-vaccine" id="report-vaccinestatus" readonly>
                                         </div>
 
                                             <input type="hidden" name="report-ic" id="report-ic">
@@ -356,7 +351,7 @@ function getDateNow($offset,$amount,$format){
                                                 {
 
                                         ?>
-                                        
+                            
                                                     <tr>
                                                         <td><?= $report['report_id'] ?></td>
                                                         <td><?= $report['reporter_unit'] ?></td>
@@ -379,45 +374,95 @@ function getDateNow($offset,$amount,$format){
                         </div>
 
                         <!-- covid status chartJS -->
-                        <!-- <div class="mycontainer mt-4">
+                        <div class="mycontainer mt-4">
+                            <!-- Start View Covid Bar -->
                             <div class="row d-flex align-items-center">
-                                <h1 class="text-center">Covid Cases</h1>
-                                <ul class="nav nav-tabs d-flex align-items-start" id="exploreTab" role="tablist">
+                                <h2 class="text-decoration-none fs-1 fw-bold mydarkgreen text-center">View Covid 19 Cases</h2>
+                                <div class="col-12 col-md-4">
+                                    <button class="btn btn_mygreen" onClick="window.location.reload();">Refresh Page</button>
+                                </div>    
+                                <div class="col-12 col-md-8">
+                                    <ul class="nav nav-tabs d-flex align-items-start" id="myTab" role="tablist">
+                                        <li class="ms-auto" role="presentation">
+                                            <button class="nav-link active" id="overall-tab" data-bs-toggle="tab"
+                                                data-bs-target="#overall-tab-content" type="button" role="tab"
+                                                aria-controls="overall-tab-content"
+                                                aria-selected="true">Today</button>
+                                        </li>
+                                        <li class="" role="presentation">
+                                            <button class="nav-link" id="week-tab" data-bs-toggle="tab"
+                                                data-bs-target="#week-tab-content" type="button" role="tab"
+                                                aria-controls="week-tab-content" aria-selected="false">Week</button>
+                                        </li>
+                                        <li class="" role="presentation">
+                                            <button class="nav-link" id="month-tab" data-bs-toggle="tab"
+                                                data-bs-target="#month-tab-content" type="button" role="tab"
+                                                aria-controls="month-tab-content"
+                                                aria-selected="false">Month</button>
+                                        </li>
+                                    </ul>
+                                </div>
 
-                                    <li class="" role="presentation">
-                                        <button class="nav-link active fw-bold" id="inside-tab" data-bs-toggle="tab"
-                                            data-bs-target="#inside-tab-content" type="button" role="tab"
-                                            aria-controls="inside-tab-content" aria-selected="true">Weekly
-                                            Cases</button>
-                                    </li>
-                                    <li class="mb-auto" role="presentation">
-                                        <button class="nav-link fw-bold" id="outside-tab" data-bs-toggle="tab"
-                                            data-bs-target="#outside-tab-content" type="button" role="tab"
-                                            aria-controls="outside-tab-content" aria-selected="false">Monthly
-                                            Cases</button>
-                                    </li>
+                            </div>
 
-                                </ul>
-                                <div class="tab-content" id="myTabContent">
-
-                                    <div class="tab-pane fade show active" id="inside-tab-content" role="tabpanel"
-                                        aria-labelledby="inside-tab">
-                                        <h2>Weekly Cases</h2>
-                                        <canvas id="myChart" class=" w-75 mx-auto"></canvas>
-                                    </div>
-
-                                    <div class="tab-pane fade" id="outside-tab-content" role="tabpanel"
-                                        aria-labelledby="outside-tab">
-                                        <div>
-                                            <h2>Monthly Cases</h2>
-                                            <canvas id="monthlyCasesChart" class="w-75 mx-auto"></canvas>
+                            <div class="tab-content" id="myTabContent">
+                                <!-- Overall Cases Tab -->
+                                <div class="tab-pane fade show active" id="overall-tab-content" role="tabpanel"
+                                aria-labelledby="overall-tab">
+                                <div class="text-center">
+                                    <h3 class="">Daily Cases: Updated <?=getDateNow(0,"days","'d M Y - h:i A'");?></span> </h3>
+                                    <h3 class="text-danger">New Cases: <span><?=getNewCases()?></span></h3>
+                                    <h3 class="text-warning">Active Cases: <span><?=getActiveCases()?></span></h3>
+                                </div>
+                                <div class="row">
+                                        <div class="ps-4 container mt-2 w-50 mx-auto">
+                                            <h6 id="Block A" class="alert">Block A: <span>0</span></h6>
+                                            <h6 id="Block B" class="alert">Block B: <span>0</span></h6>
+                                            <h6 id="Block C" class="alert">Block C: <span>0</span></h6>
+                                            <h6 id="Block D" class="alert">Block D: <span>0</span></h6>
+                                            <div class="d-flex justify-content-around">
+                                                <span class="alert alert-success p-1 mx-1">(0)</span>
+                                                <span class="alert alert-primary p-1">(1-4)</span>
+                                                <span class="alert alert-warning p-1">(5-9)</span>
+                                                <span class="alert alert-danger p-1">(>=10)</span>
+                                            </div>
+                                        </div>
+                                        <div class="w-50 mx-auto p-4">
+                                            <canvas id="dailyActiveCovidGraph" class=""></canvas>
                                         </div>
                                     </div>
                                 </div>
+                                <!-- Overall Cases Tab End -->
 
+                                <!-- Last Month Cases Tab -->
+                                <div class="tab-pane fade" id="month-tab-content" role="tabpanel"
+                                    aria-labelledby="month-tab">
+                                    <div class="text-center">
+                                        <h3 class="pt-2">Last Month's Cases: <span><?=getDateNow(-1,"months","'M Y'");?></span></h3>
+                                        <small class="text-muted">Last Updated: <?=getDateNow(-1,"days","'d M Y'");?></small>
+                                    </div>
+                                    <div id="covid_monthly"">
+                                        <canvas id="monthlyActiveCovidGraph"></canvas>
+                                    </div>
+                                </div>
+                                <!-- Last Month Cases Tab End -->
 
+                                <!-- Last Week Cases Tab -->
+                                <div class="tab-pane fade" id="week-tab-content" role="tabpanel"
+                                    aria-labelledby="week-tab">
+                                    <div class="text-center">
+                                        <h3 class="pt-2">Last Week's Cases: <span><?=getDateNow(-7,"days","'d'");?>-<?=getDateNow(-1,"days","'d M Y'");?> </span></h3>
+                                        <small class="text-muted">Last Updated: <?=getDateNow(-1,"days","'d M Y'");?></small>
+                                    </div>
+                                    <div id="covid_weekly">
+                                        <!-- Weekly Graph -->
+                                        <canvas id="weeklyCovidGraph"></canvas>
+                                    </div>
+                                </div>
+                                <!-- Last Week Cases Tab End -->
                             </div>
-                        </div> -->
+                            <!-- End View Covid Bar -->
+                        </div>
 
 
                         <!-- History Container-->
@@ -437,4 +482,28 @@ function getDateNow($offset,$amount,$format){
 
                         <!-- (Included In This file Only)Manage Covid JS -->
                         <script src="assets/js/managecovid.js"></script>
+
+                        <!-- JS File with functions -->
+    <script src="assets/js/covid.js"></script>
+
+<!-- Script to connect JS and PHP functions -->
+<script>
+
+    // Create yesterday data
+    var covid_report = <?php echo json_encode(getCurrentReport()); ?>;
+    //Daily Chart
+    currentCases(covid_report);
+
+    // Create weekly data
+    var week_arr = <?php echo json_encode(createWeekArray()); ?>;
+    var weekly_report = <?php echo json_encode(getWeeklyReport()); ?>;
+    // Weekly Graph
+    weeklyCases(week_arr, weekly_report);
+
+    // Create Monthly Data
+    var month_arr = <?php echo json_encode(createMonthArray()); ?>;
+    var monthlyReport = <?php echo json_encode(getMonthlyReport()); ?>;
+    // Monthly Cases
+    monthlyCases(month_arr, monthlyReport);
+</script>
 <?php include 'includes/admin-footer.php';?>
