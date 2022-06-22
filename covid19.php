@@ -73,7 +73,7 @@ ini_set('display_errors', 1);
                         <h3 class="pt-2">Last Month's Cases: <span><?=getDateNow(-1,"months","'M Y'");?></span></h3>
                         <small class="text-muted">Last Updated: <?=getDateNow(-1,"days","'d M Y'");?></small>
                     </div>
-                    <div id="covid_monthly"">
+                    <div id="covid_monthly">
                         <canvas id="monthlyActiveCovidGraph"></canvas>
                     </div>
                 </div>

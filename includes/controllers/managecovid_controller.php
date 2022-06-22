@@ -38,7 +38,7 @@ if(isset($_GET['report_id']))
 {
     $report_id = mysqli_real_escape_string($con, $_GET['report_id']);
 
-    $query = "SELECT * FROM covidreport INNER JOIN unit ON covidreport.reporter_unit = unit.unit_no INNER JOIN resident ON unit.owner_ic = resident.ic WHERE report_id='$report_id'";
+    $query = "SELECT * FROM report INNER JOIN unit ON report.reporter_unit = unit.unit_no INNER JOIN resident ON unit.owner_ic = resident.ic WHERE report_id='$report_id'";
 
     $query_run = mysqli_query($con, $query);
 
@@ -59,6 +59,33 @@ if(isset($_GET['report_id']))
         $res = [
             'status' => 404,
             'message' => 'The Report Does not exist'
+        ];
+        echo json_encode($res);
+        return;
+    }
+}
+
+// DELETE 
+if(isset($_POST['delete_report']))
+{
+    $report_id = mysqli_real_escape_string($con, $_POST['report_id']);
+
+    $query = "DELETE FROM report WHERE report_id='$report_id'";
+    $query_run = mysqli_query($con, $query);
+    if($query_run)
+    {
+        $res = [
+            'status' => 200,
+            'message' => 'Report Deleted Successfully'
+        ];
+        echo json_encode($res);
+        return;
+    }
+    else
+    {
+        $res = [
+            'status' => 500,
+            'message' => 'Report Not Deleted'
         ];
         echo json_encode($res);
         return;

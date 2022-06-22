@@ -243,11 +243,3 @@ async function buildModalContent(content) {
     $('#announcementPopupModal .modal-body').append(content)
 }
 
-// Sweet Alert Success
-// function showAlert(title,messageBody,type){
-//     Swal.fire(
-//         title,
-//         messageBody,
-//         type
-//       )
-// }

@@ -63,7 +63,7 @@ if(isset($_POST['updateReportButton'])){
         if($query_run) { 
             echoToast("Status Updated Successfully");
             //delete report
-            $deleteQuery = mysqli_query($con,"DELETE FROM covidreport WHERE report_id=$report_id"); 
+            $deleteQuery = mysqli_query($con,"DELETE FROM report WHERE report_id=$report_id"); 
         }else{ 
             echoToast("Updated Fail");
         }
@@ -313,7 +313,7 @@ function getYesterdayActive(){
                                     </div>
                                     <div class="modal-footer">
                                         <button type="submit" class="btn btn-primary" name="updateReportButton">Update</button>
-                                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Delete</button>
+                                        <button type="button" class="btn btn-danger deleteReportBtn" value="" id="delete-report-button" data-bs-dismiss="modal">Delete</button>
                                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
                                     </div>
                                 </form>
@@ -342,7 +342,7 @@ function getYesterdayActive(){
                                         <?php
 
 
-                                            $data_query = mysqli_query($con, "SELECT * FROM covidreport ORDER BY date DESC");
+                                            $data_query = mysqli_query($con, "SELECT * FROM report ORDER BY date DESC");
 
 
                                             if(mysqli_num_rows($data_query) > 0)
